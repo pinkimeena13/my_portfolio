@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { FiExternalLink, FiGithub, FiSmartphone, FiGlobe, FiShield, FiDatabase, FiMonitor, FiBell, FiCloud, FiCpu, FiUmbrella } from 'react-icons/fi'
+import { FiExternalLink, FiGithub, FiSmartphone, FiGlobe, FiShield, FiDatabase, FiMonitor, FiBell, FiCloud, FiCpu, FiUmbrella, FiUsers, FiEdit3 } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
 
 const projects = [
@@ -158,6 +158,41 @@ const projects = [
     category: 'Enterprise',
     color: '#3b82f6',
   },
+  {
+    id: 10,
+    title: 'Hashproma',
+    subtitle: 'Project Management Training Platform',
+    description:
+      'A full-stack training platform designed to help individuals become skilled project managers. Features online classes, article & blog publishing, and an integrated book purchase system — all in one responsive web application.',
+    gradient: 'from-teal-600 via-emerald-500 to-cyan-500',
+    icon: <FiUsers className="text-4xl" />,
+    tags: ['React.js', 'Strapi', 'Tailwind CSS', 'MySQL'],
+    highlights: [
+      'Online class management with structured learning paths',
+      'Article & blog upload system for knowledge sharing',
+      'Integrated book purchase & e-commerce feature',
+    ],
+    category: 'Web',
+    color: '#14b8a6',
+  },
+  {
+    id: 11,
+    title: 'SketchNote',
+    subtitle: 'Smart Note & Alert Management App',
+    description:
+      'Contributed as a Frontend Developer on SketchNote — a smart productivity application. Implemented a real-time word counter, a category-wise alert filtering system, and a PDF generation feature that allows users to export newly created alerts as downloadable documents.',
+    gradient: 'from-slate-700 via-indigo-700 to-violet-700',
+    icon: <FiEdit3 className="text-4xl" />,
+    tags: ['React.js', 'Frontend', 'PDF Generation', 'TypeScript'],
+    highlights: [
+      'Real-time word counting feature for notes',
+      'Category-wise alert filtering & management',
+      'PDF export for new alerts with one click',
+    ],
+    category: 'Web',
+    color: '#6366f1',
+    role: 'Frontend Developer',
+  },
 ]
 
 const categories = ['All', 'AI', 'Web', 'Mobile', 'Backend', 'Enterprise']
@@ -219,6 +254,14 @@ export default function Projects() {
                 <div className="absolute top-3 left-3 z-10">
                   <span className="bg-gradient-to-r from-violet-500 to-cyan-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">
                     ✨ Featured
+                  </span>
+                </div>
+              )}
+              {/* Role badge */}
+              {project.role && (
+                <div className="absolute top-3 left-3 z-10">
+                  <span className="bg-black/40 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full border border-white/20">
+                    👩‍💻 {project.role}
                   </span>
                 </div>
               )}

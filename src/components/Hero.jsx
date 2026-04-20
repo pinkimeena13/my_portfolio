@@ -38,10 +38,10 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pb-10 overflow-hidden"
+      className="relative min-h-svh flex items-center justify-center pt-20 pb-6 lg:py-10 overflow-hidden"
     >
       <div className="w-full px-4 sm:px-8 lg:px-14">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* ── Left: Text ── */}
           <motion.div variants={containerVariants} initial="hidden" animate="show">
@@ -166,7 +166,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.25, ease: 'easeOut' }}
-            className="flex flex-col items-center gap-8"
+            className="flex flex-col items-center gap-8 mt-4 lg:mt-0"
           >
             <div className="relative">
               {/* Static dashed ring — no spin for performance */}
@@ -177,7 +177,7 @@ export default function Hero() {
               <div className="absolute inset-0 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.18) 0%, rgba(6,182,212,0.1) 60%, transparent 100%)', filter: 'blur(20px)', transform: 'scale(1.4)' }} />
 
               <div
-                className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden animate-float"
+                className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden animate-float"
                 style={{ boxShadow: '0 0 0 3px rgba(124,58,237,0.4), 0 0 60px rgba(124,58,237,0.2)' }}
               >
                 <div className="w-full h-full bg-gradient-to-br from-violet-600 via-purple-700 to-cyan-600 flex items-center justify-center">
@@ -192,27 +192,27 @@ export default function Hero() {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-3 -right-6 glass-card glow-border rounded-2xl px-3 py-2 flex items-center gap-2"
+                className="absolute -top-3 -right-6 glass-card glow-border rounded-xl px-2 py-1 flex items-center gap-1.5"
               >
-                <FiCode className="text-violet-400 text-sm" />
-                <span className={`text-xs font-semibold ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>Full Stack</span>
+                <FiCode className="text-violet-400 text-xs" />
+                <span className={`text-[10px] font-semibold ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>Full Stack</span>
               </motion.div>
 
               {/* Passionate builder badge */}
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, delay: 0.5 }}
-                className="absolute -bottom-2 -left-8 glass-card glow-border rounded-2xl px-3 py-2 flex items-center gap-2"
+                className="absolute -bottom-2 -left-8 glass-card glow-border rounded-xl px-2 py-1 flex items-center gap-1.5"
               >
-                <span className="text-sm">⚡</span>
-                <span className={`text-xs font-mono font-medium ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>Passionate Builder</span>
+                <span className="text-xs">⚡</span>
+                <span className={`text-[10px] font-mono font-medium ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>Passionate Builder</span>
               </motion.div>
 
               {/* 2.6+ badge */}
               <motion.div
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-                className="absolute top-1/2 -left-14 glass-card glow-border rounded-xl px-2.5 py-1.5 text-center"
+                className="absolute top-1/2 -left-14 glass-card glow-border rounded-xl px-2.5 py-1.5 text-center hidden sm:block"
               >
                 <div className="gradient-text font-black text-sm leading-none">2.6+</div>
                 <div className={`text-xs mt-0.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>yrs exp</div>
@@ -237,13 +237,13 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator — relative on mobile, absolute on desktop */}
         <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.8, duration: 0.8 }}
           onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 group cursor-pointer"
+          className="flex lg:absolute lg:bottom-8 lg:left-1/2 lg:-translate-x-1/2 flex-col items-center gap-1 group cursor-pointer mt-3 lg:mt-0 mx-auto w-fit"
           aria-label="Scroll down"
         >
           <motion.span

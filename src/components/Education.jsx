@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { FiBook, FiCalendar, FiMapPin, FiAward } from 'react-icons/fi'
+import { FiBook, FiCalendar, FiAward } from 'react-icons/fi'
+import { useTheme } from '../context/ThemeContext'
 
 const education = [
   {
@@ -28,6 +29,8 @@ const education = [
 export default function Education() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
 
   return (
     <section id="education" ref={ref} className="py-20 px-4 sm:px-8 lg:px-14">
@@ -63,7 +66,7 @@ export default function Education() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-2">{edu.degree}</h3>
+                <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>{edu.degree}</h3>
 
                 <div className="flex items-center gap-2 text-violet-400 font-semibold text-sm mb-1">
                   <FiBook className="flex-shrink-0" />

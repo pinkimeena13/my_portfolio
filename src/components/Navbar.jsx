@@ -72,7 +72,7 @@ export default function Navbar() {
         </button>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-1">
+        <ul className="hidden lg:flex items-center gap-1">
           {links.map((l) => (
             <li key={l.href}>
               <button
@@ -117,14 +117,14 @@ export default function Navbar() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             onClick={handleHireMe}
-            className="hidden md:flex btn-primary items-center gap-2"
+            className="hidden lg:flex btn-primary items-center gap-2"
           >
             <FiMail className="text-sm" /> Let's Connect
           </motion.button>
 
           {/* Mobile hamburger */}
           <button
-            className={`md:hidden p-2 rounded-lg ${isDark ? 'text-slate-300' : 'text-slate-700'}`}
+            className={`lg:hidden p-2 rounded-lg ${isDark ? 'text-slate-300' : 'text-slate-700'}`}
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
@@ -142,7 +142,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={`md:hidden border-t ${isDark ? 'border-white/5 bg-[#030014]/95' : 'border-violet-100 bg-white/95'}`}
+            className={`lg:hidden border-t ${isDark ? 'border-white/5 bg-[#030014]/95' : 'border-violet-100 bg-white/95'}`}
           >
             <div className="px-6 py-4 flex flex-col gap-2">
               {links.map((l) => (

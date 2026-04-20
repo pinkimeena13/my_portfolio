@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { FiMail, FiPhone, FiLinkedin, FiGithub, FiSend, FiMapPin } from 'react-icons/fi'
+import { useTheme } from '../context/ThemeContext'
 
 const contactInfo = [
   {
@@ -38,6 +39,8 @@ const contactInfo = [
 export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [sent, setSent] = useState(false)
 
@@ -76,26 +79,26 @@ export default function Contact() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-xl font-bold text-white mb-6">Contact Information</h3>
+            <h3 className={`text-xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Contact Information</h3>
             <div className="space-y-4 mb-8">
               {contactInfo.map((item) => (
-                <div key={item.label} className="glass-card rounded-2xl p-4 flex items-center gap-4 group hover:bg-white/5 transition-all duration-300">
-                  <div className="p-3 rounded-xl bg-white/5 flex-shrink-0">
+                <div key={item.label} className={`glass-card rounded-2xl p-4 flex items-center gap-4 group transition-all duration-300 ${isDark ? 'hover:bg-white/5' : 'hover:bg-violet-50'}`}>
+                  <div className={`p-3 rounded-xl flex-shrink-0 ${isDark ? 'bg-white/5' : 'bg-violet-50'}`}>
                     {item.icon}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-slate-500 text-xs font-mono uppercase tracking-wider mb-1">{item.label}</p>
+                    <p className={`text-xs font-mono uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{item.label}</p>
                     {item.href ? (
                       <a
                         href={item.href}
                         target={item.href.startsWith('http') ? '_blank' : undefined}
                         rel="noreferrer"
-                        className="text-slate-200 text-sm font-medium hover:text-violet-400 transition-colors truncate block"
+                        className={`text-sm font-medium hover:text-violet-500 transition-colors truncate block ${isDark ? 'text-slate-200' : 'text-slate-700'}`}
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <span className="text-slate-200 text-sm font-medium">{item.value}</span>
+                      <span className={`text-sm font-medium ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>{item.value}</span>
                     )}
                   </div>
                 </div>
@@ -123,7 +126,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <form onSubmit={handleSubmit} className="glass-card glow-border rounded-3xl p-8 space-y-5">
-              <h3 className="text-xl font-bold text-white mb-6">Send a Message</h3>
+              <h3 className={`text-xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Send a Message</h3>
 
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
@@ -134,7 +137,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Your name"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-violet-500/50 focus:bg-white/8 transition-all duration-300"
+                    className={`w-full rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/50 transition-all duration-300 ${isDark ? 'bg-white/5 border border-white/10 text-slate-200 placeholder-slate-600' : 'bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400'}`}
                   />
                 </div>
                 <div>
@@ -146,7 +149,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="your@email.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-violet-500/50 focus:bg-white/8 transition-all duration-300"
+                    className={`w-full rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/50 transition-all duration-300 ${isDark ? 'bg-white/5 border border-white/10 text-slate-200 placeholder-slate-600' : 'bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400'}`}
                   />
                 </div>
               </div>
@@ -171,7 +174,7 @@ export default function Contact() {
                   required
                   rows={5}
                   placeholder="Tell me about your project or opportunity..."
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-violet-500/50 transition-all duration-300 resize-none"
+                  className={`w-full rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/50 transition-all duration-300 resize-none ${isDark ? 'bg-white/5 border border-white/10 text-slate-200 placeholder-slate-600' : 'bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400'}`}
                 />
               </div>
 
