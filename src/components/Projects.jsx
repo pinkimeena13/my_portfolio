@@ -33,6 +33,25 @@ import sk1 from '../assets/projects/SketchNote/home.png'
 import sk2 from '../assets/projects/SketchNote/2.png'
 import sk3 from '../assets/projects/SketchNote/3.png'
 import sk4 from '../assets/projects/SketchNote/4.png'
+// Restaurco
+import rest1 from '../assets/projects/restaurant/1.png'
+import rest2 from '../assets/projects/restaurant/2.png'
+import rest3 from '../assets/projects/restaurant/3.png'
+import rest4 from '../assets/projects/restaurant/4.png'
+import rest5 from '../assets/projects/restaurant/5.png'
+import restVideo from '../assets/projects/restaurant/video.mov'
+// 6Meal Web
+import meal1 from '../assets/projects/6meal/1.png'
+import meal2 from '../assets/projects/6meal/2.png'
+import meal3 from '../assets/projects/6meal/3.png'
+import meal4 from '../assets/projects/6meal/4.png'
+import meal5 from '../assets/projects/6meal/5.png'
+import meal6 from '../assets/projects/6meal/6.png'
+import meal7 from '../assets/projects/6meal/7.png'
+import meal8 from '../assets/projects/6meal/8.png'
+import mealVideo from '../assets/projects/6meal/video.mov'
+// Digital Board
+import dbVideo from '../assets/projects/Digital Bord/video.mp4'
 // Shouta
 import sh1 from '../assets/projects/shouta/1.png'
 import sh2 from '../assets/projects/shouta/2.png'
@@ -213,7 +232,26 @@ const projects = [
       { t: 'img', src: im13 },
     ],
   },
-  // ── 6. Hashproma
+  // ── 6. AI Resume Builder
+  {
+    id: 8,
+    title: 'AI Resume Builder',
+    subtitle: 'AI-Powered Smart Resume Tool',
+    description:
+      'Smart web application that helps users create professional resumes with AI assistance. Features AI-generated summaries & project descriptions, multiple themes, PDF download, and shareable link generation.',
+    gradient: 'from-fuchsia-600 via-violet-600 to-indigo-600',
+    icon: <FiCpu className="text-4xl" />,
+    tags: ['React.js', 'Strapi', 'AI', 'PDF Generation'],
+    highlights: [
+      'AI-generated professional summaries & project descriptions',
+      'Multiple resume themes with live preview',
+      'PDF download & shareable link generation',
+    ],
+    category: 'AI',
+    color: '#a855f7',
+    featured: true,
+  },
+  // ── 7. Hashproma
   {
     id: 10,
     title: 'Hashproma',
@@ -239,7 +277,29 @@ const projects = [
       { t: 'img', src: hp6 },
     ],
   },
-  // ── 7. SketchNote
+  // ── 8. Setu
+  {
+    id: 4,
+    title: 'Setu',
+    subtitle: 'Farmer-Focused AgriTech App',
+    description:
+      'Robust backend platform for farmers covering storage management, livestock tracking, and water/soil resource management. Empowering agricultural productivity through digital tools.',
+    gradient: 'from-green-600 via-emerald-600 to-teal-600',
+    icon: <FiDatabase className="text-4xl" />,
+    tags: ['NestJS', 'MongoDB', 'Backend'],
+    highlights: [
+      'Backend services for storage, livestock & water management',
+      'Digital resource access for agricultural productivity',
+      'Scalable NestJS architecture with MongoDB',
+    ],
+    category: 'Backend',
+    color: '#10b981',
+    media: [
+      { t: 'vid', src: setuVideo },
+      { t: 'img', src: setu1 },
+    ],
+  },
+  // ── 9. SketchNote
   {
     id: 11,
     title: 'SketchNote',
@@ -263,47 +323,6 @@ const projects = [
       { t: 'img', src: sk3 },
       { t: 'img', src: sk4 },
     ],
-  },
-  // ── 8. Setu
-  {
-    id: 4,
-    title: 'Setu',
-    subtitle: 'Farmer-Focused AgriTech App',
-    description:
-      'Robust backend platform for farmers covering storage management, livestock tracking, and water/soil resource management. Empowering agricultural productivity through digital tools.',
-    gradient: 'from-green-600 via-emerald-600 to-teal-600',
-    icon: <FiDatabase className="text-4xl" />,
-    tags: ['NestJS', 'MongoDB', 'Backend'],
-    highlights: [
-      'Backend services for storage, livestock & water management',
-      'Digital resource access for agricultural productivity',
-      'Scalable NestJS architecture with MongoDB',
-    ],
-    category: 'Backend',
-    color: '#10b981',
-    media: [
-      { t: 'vid', src: setuVideo },
-      { t: 'img', src: setu1 },
-    ],
-  },
-  // ── 9. AI Resume Builder
-  {
-    id: 8,
-    title: 'AI Resume Builder',
-    subtitle: 'AI-Powered Smart Resume Tool',
-    description:
-      'Smart web application that helps users create professional resumes with AI assistance. Features AI-generated summaries & project descriptions, multiple themes, PDF download, and shareable link generation.',
-    gradient: 'from-fuchsia-600 via-violet-600 to-indigo-600',
-    icon: <FiCpu className="text-4xl" />,
-    tags: ['React.js', 'Strapi', 'AI', 'PDF Generation'],
-    highlights: [
-      'AI-generated professional summaries & project descriptions',
-      'Multiple resume themes with live preview',
-      'PDF download & shareable link generation',
-    ],
-    category: 'AI',
-    color: '#a855f7',
-    featured: true,
   },
   // ── 10. SSEC College Website
   {
@@ -347,24 +366,64 @@ const projects = [
     ],
     category: 'Web',
     color: '#f59e0b',
+    media: [
+      { t: 'vid', src: dbVideo },
+    ],
   },
-  // ── 12. Food Website
+  // ── 12. Restaurant Management
+  {
+    id: 13,
+    title: 'Restaurant Management',
+    subtitle: 'Restaurant Web Application',
+    description:
+      'Responsive multi-page restaurant web app focused on user engagement. Features an interactive table reservation system, real-time custom theme switcher, digital menu with modal-based ordering, and a feedback & ratings module.',
+    gradient: 'from-orange-500 via-red-500 to-rose-600',
+    icon: <FiUmbrella className="text-4xl" />,
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap 5'],
+    highlights: [
+      'Interactive reservation system with form validation',
+      'Real-time custom theme switcher for color personalization',
+      'Digital menu with modal ordering & feedback ratings',
+    ],
+    category: 'Web',
+    color: '#f97316',
+    media: [
+      { t: 'vid', src: restVideo },
+      { t: 'img', src: rest1 },
+      { t: 'img', src: rest2 },
+      { t: 'img', src: rest3 },
+      { t: 'img', src: rest4 },
+      { t: 'img', src: rest5 },
+    ],
+  },
+  // ── 13. 6Meal Web (clone)
   {
     id: 9,
-    title: 'Food Website',
-    subtitle: 'Static Food & Restaurant App',
+    title: '6Meal Web',
+    subtitle: 'Subscription-Based Meal Delivery App',
     description:
-      'Static web application built with Angular 19. Features Home, Contact, Product pages and more. Key features include search functionality, product browsing, and a clean modern UI.',
+      'Clone of a subscription-based healthy meal delivery web app serving Delhi NCR. Features a dynamic pricing engine, plan customization by duration & dietary preference, localStorage-persisted cart, SSR with Angular + Express, and a scroll-aware navbar.',
     gradient: 'from-rose-500 via-pink-500 to-orange-400',
     icon: <FiUmbrella className="text-4xl" />,
-    tags: ['Angular 19', 'TypeScript', 'Frontend'],
+    tags: ['Angular 19', 'TailwindCSS', 'Angular Material', 'SSR'],
     highlights: [
-      'Built with Angular 19 latest features',
-      'Product search & browsing functionality',
-      'Multi-page: Home, Contact, Products & more',
+      'Plan customization — duration, meals/day & dietary preference',
+      'Dynamic pricing engine with real-time price calculation',
+      'Cart with localStorage persistence + Angular SSR (Express)',
     ],
     category: 'Web',
     color: '#f43f5e',
+    media: [
+      { t: 'vid', src: mealVideo },
+      { t: 'img', src: meal1 },
+      { t: 'img', src: meal2 },
+      { t: 'img', src: meal3 },
+      { t: 'img', src: meal4 },
+      { t: 'img', src: meal5 },
+      { t: 'img', src: meal6 },
+      { t: 'img', src: meal7 },
+      { t: 'img', src: meal8 },
+    ],
   },
 ]
 
@@ -389,10 +448,26 @@ function ProjectBanner({ project }) {
   const prev = (e) => { e.stopPropagation(); setIdx((i) => (i - 1 + total) % total) }
   const next = (e) => { e.stopPropagation(); setIdx((i) => (i + 1) % total) }
 
+  const blockContext = (e) => e.preventDefault()
+
   return (
-    <div className="relative h-48 overflow-hidden bg-black group/banner">
+    <div
+      className="relative h-48 overflow-hidden bg-black group/banner select-none"
+      onContextMenu={blockContext}
+    >
       {current.t === 'img' ? (
-        <img src={current.src} alt="" className="w-full h-full object-cover object-top transition-opacity duration-300" />
+        <>
+          <img
+            src={current.src}
+            alt=""
+            draggable="false"
+            onContextMenu={blockContext}
+            onDragStart={blockContext}
+            className="w-full h-full object-cover object-top transition-opacity duration-300 pointer-events-none"
+          />
+          {/* transparent shield blocks right-click & drag on image */}
+          <div className="absolute inset-0 z-[1]" onContextMenu={blockContext} />
+        </>
       ) : (
         <video
           key={current.src}
@@ -403,20 +478,23 @@ function ProjectBanner({ project }) {
           loop
           playsInline
           controls
+          controlsList="nodownload nofullscreen"
+          disablePictureInPicture
+          onContextMenu={blockContext}
         />
       )}
 
       {current.t === 'img' && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-[2]" />
       )}
 
       {/* Prev / Next arrows */}
       {total > 1 && (
         <>
-          <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/banner:opacity-100 transition-opacity z-10">
+          <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/banner:opacity-100 transition-opacity z-20">
             <FiChevronLeft className="text-sm" />
           </button>
-          <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/banner:opacity-100 transition-opacity z-10">
+          <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/banner:opacity-100 transition-opacity z-20">
             <FiChevronRight className="text-sm" />
           </button>
         </>
@@ -424,7 +502,7 @@ function ProjectBanner({ project }) {
 
       {/* Dot indicators */}
       {total > 1 && (
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-20">
           {media.map((_, i) => (
             <button
               key={i}
@@ -439,7 +517,7 @@ function ProjectBanner({ project }) {
 
       {/* Video badge */}
       {current.t === 'vid' && (
-        <div className="absolute top-3 left-3 z-10">
+        <div className="absolute top-3 left-3 z-20">
           <span className="bg-black/50 backdrop-blur-sm text-violet-300 text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 border border-violet-400/30">
             <FiVideo className="text-[9px]" /> Demo
           </span>
@@ -447,7 +525,7 @@ function ProjectBanner({ project }) {
       )}
 
       {/* Category badge */}
-      <div className="absolute top-3 right-3 z-10">
+      <div className="absolute top-3 right-3 z-20">
         <span className="bg-black/30 backdrop-blur-sm rounded-full px-3 py-1 text-xs text-white font-medium border border-white/20">{project.category}</span>
       </div>
     </div>
