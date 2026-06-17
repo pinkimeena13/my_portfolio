@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, useInView } from 'framer-motion'
-import { FiExternalLink, FiGithub, FiSmartphone, FiGlobe, FiShield, FiDatabase, FiMonitor, FiBell, FiCloud, FiCpu, FiUmbrella, FiUsers, FiEdit3, FiChevronLeft, FiChevronRight, FiVideo, FiUserCheck } from 'react-icons/fi'
+import { FiExternalLink, FiGithub, FiSmartphone, FiGlobe, FiShield, FiDatabase, FiMonitor, FiBell, FiCloud, FiCpu, FiUmbrella, FiUsers, FiEdit3, FiChevronLeft, FiChevronRight, FiVideo, FiUserCheck, FiMaximize2, FiX } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
 
 // BCONNECT
@@ -8,19 +9,19 @@ import bc1 from '../assets/projects/BCONNECT/HomePage.png'
 import bc2 from '../assets/projects/BCONNECT/CategoryPage.png'
 import bc3 from '../assets/projects/BCONNECT/ProductDetailPage.png'
 import bc4 from '../assets/projects/BCONNECT/BconnectBackendContendManager.png'
-import bcVideo from '../assets/projects/BCONNECT/video.mov'
+import bcVideo from '../assets/projects/BCONNECT/video.mp4'
 // CDP
 import cdp1 from '../assets/projects/CDP/home.png'
 import cdp2 from '../assets/projects/CDP/2.png'
 import cdp3 from '../assets/projects/CDP/3.png'
 import cdp4 from '../assets/projects/CDP/4.png'
-import cdpVideo from '../assets/projects/CDP/video.mov'
+import cdpVideo from '../assets/projects/CDP/video.mp4'
 // SSEC
 import ssec1 from '../assets/projects/SSEC/home.png'
 import ssec2 from '../assets/projects/SSEC/courses.png'
 import ssec3 from '../assets/projects/SSEC/about.png'
 import ssec4 from '../assets/projects/SSEC/admission.png'
-import ssecVideo from '../assets/projects/SSEC/video.mov'
+import ssecVideo from '../assets/projects/SSEC/video.mp4'
 // Hashproma
 import hp1 from '../assets/projects/Hashproma/home.png'
 import hp2 from '../assets/projects/Hashproma/2.png'
@@ -39,7 +40,7 @@ import rest2 from '../assets/projects/restaurant/2.png'
 import rest3 from '../assets/projects/restaurant/3.png'
 import rest4 from '../assets/projects/restaurant/4.png'
 import rest5 from '../assets/projects/restaurant/5.png'
-import restVideo from '../assets/projects/restaurant/video.mov'
+import restVideo from '../assets/projects/restaurant/video.mp4'
 // 6Meal Web
 import meal1 from '../assets/projects/6meal/1.png'
 import meal2 from '../assets/projects/6meal/2.png'
@@ -49,7 +50,7 @@ import meal5 from '../assets/projects/6meal/5.png'
 import meal6 from '../assets/projects/6meal/6.png'
 import meal7 from '../assets/projects/6meal/7.png'
 import meal8 from '../assets/projects/6meal/8.png'
-import mealVideo from '../assets/projects/6meal/video.mov'
+import mealVideo from '../assets/projects/6meal/video.mp4'
 // Digital Board
 import dbVideo from '../assets/projects/Digital Bord/video.mp4'
 // Shouta
@@ -75,10 +76,10 @@ import im10 from '../assets/projects/SAP BTP interviewManagement/10.png'
 import im11 from '../assets/projects/SAP BTP interviewManagement/11.png'
 import im12 from '../assets/projects/SAP BTP interviewManagement/12.png'
 import im13 from '../assets/projects/SAP BTP interviewManagement/13.png'
-import imVideo from '../assets/projects/SAP BTP interviewManagement/video.mov'
+import imVideo from '../assets/projects/SAP BTP interviewManagement/video.mp4'
 // Setu
 import setu1 from '../assets/projects/Setu/1.png'
-import setuVideo from '../assets/projects/Setu/video.mov'
+import setuVideo from '../assets/projects/Setu/video.mp4'
 // SAP BTP Outlook
 import sap1 from '../assets/projects/SAP BTP Outlook/1.png'
 import sap2 from '../assets/projects/SAP BTP Outlook/2.png'
@@ -88,7 +89,7 @@ import sap5 from '../assets/projects/SAP BTP Outlook/5.png'
 import sap6 from '../assets/projects/SAP BTP Outlook/6.png'
 import sap7 from '../assets/projects/SAP BTP Outlook/7.png'
 import sap8 from '../assets/projects/SAP BTP Outlook/8.png'
-import sapVideo from '../assets/projects/SAP BTP Outlook/video.mov'
+import sapVideo from '../assets/projects/SAP BTP Outlook/video.mp4'
 
 const projects = [
   // ── 1. Shouta
@@ -232,26 +233,7 @@ const projects = [
       { t: 'img', src: im13 },
     ],
   },
-  // ── 6. AI Resume Builder
-  {
-    id: 8,
-    title: 'AI Resume Builder',
-    subtitle: 'AI-Powered Smart Resume Tool',
-    description:
-      'Smart web application that helps users create professional resumes with AI assistance. Features AI-generated summaries & project descriptions, multiple themes, PDF download, and shareable link generation.',
-    gradient: 'from-fuchsia-600 via-violet-600 to-indigo-600',
-    icon: <FiCpu className="text-4xl" />,
-    tags: ['React.js', 'Strapi', 'AI', 'PDF Generation'],
-    highlights: [
-      'AI-generated professional summaries & project descriptions',
-      'Multiple resume themes with live preview',
-      'PDF download & shareable link generation',
-    ],
-    category: 'AI',
-    color: '#a855f7',
-    featured: true,
-  },
-  // ── 7. Hashproma
+  // ── 6. Hashproma
   {
     id: 10,
     title: 'Hashproma',
@@ -427,13 +409,155 @@ const projects = [
   },
 ]
 
-function ProjectBanner({ project }) {
+function VideoPlayer({ src, project }) {
+  const [errored, setErrored] = useState(false)
+  const blockContext = (e) => e.preventDefault()
+
+  if (errored) {
+    return (
+      <div className={`w-full h-full bg-gradient-to-br ${project.gradient} flex flex-col items-center justify-center gap-2`}>
+        <div className="text-white/70 text-4xl">{project.icon}</div>
+        <span className="text-white/50 text-xs">Video preview unavailable</span>
+      </div>
+    )
+  }
+
+  return (
+    <video
+      key={src}
+      className="w-full h-full object-contain bg-black"
+      autoPlay
+      muted
+      loop
+      playsInline
+      controls
+      controlsList="nodownload"
+      disablePictureInPicture
+      onContextMenu={blockContext}
+      onError={() => setErrored(true)}
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  )
+}
+
+function MediaLightbox({ media, initialIdx, onClose }) {
+  const [idx, setIdx] = useState(initialIdx)
+  const current = media[idx]
+  const total = media.length
+  const blockContext = (e) => e.preventDefault()
+
+  useEffect(() => {
+    const handler = (e) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', handler)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handler)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  const prev = (e) => { e.stopPropagation(); setIdx((i) => (i - 1 + total) % total) }
+  const next = (e) => { e.stopPropagation(); setIdx((i) => (i + 1) % total) }
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[99999] bg-black/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6"
+      onClick={onClose}
+      onContextMenu={blockContext}
+    >
+      {/* Modal card */}
+      <div
+        className="relative flex flex-col bg-[#111] rounded-2xl overflow-hidden shadow-2xl w-full max-w-3xl"
+        style={{ maxHeight: '90vh' }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header — close button always top-right */}
+        <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/10 flex-shrink-0">
+          <span className="text-white/40 text-xs select-none">
+            {total > 1 ? `${idx + 1} / ${total}` : 'Preview'}
+          </span>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-red-500/80 transition-colors"
+          >
+            <FiX className="text-sm" />
+          </button>
+        </div>
+
+        {/* Media area */}
+        <div className="flex-1 flex items-center justify-center bg-black overflow-hidden" style={{ minHeight: 0 }}>
+          {current.t === 'img' ? (
+            <img
+              src={current.src}
+              alt=""
+              draggable="false"
+              onContextMenu={blockContext}
+              onDragStart={blockContext}
+              className="max-w-full max-h-full object-contain select-none"
+              style={{ maxHeight: 'calc(90vh - 100px)' }}
+            />
+          ) : (
+            <video
+              key={current.src}
+              className="max-w-full max-h-full bg-black"
+              style={{ maxHeight: 'calc(90vh - 100px)' }}
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+              controlsList="nodownload"
+              onContextMenu={blockContext}
+            >
+              <source src={current.src} type="video/mp4" />
+            </video>
+          )}
+        </div>
+
+        {/* Footer — prev / dots / next */}
+        {total > 1 && (
+          <div className="flex items-center justify-between px-4 py-2.5 border-t border-white/10 flex-shrink-0">
+            <button
+              onClick={prev}
+              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            >
+              <FiChevronLeft />
+            </button>
+
+            <div className="flex gap-1.5">
+              {media.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => { e.stopPropagation(); setIdx(i) }}
+                  className={`rounded-full transition-all duration-200 ${
+                    i === idx ? 'w-5 h-1.5 bg-white' : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={next}
+              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            >
+              <FiChevronRight />
+            </button>
+          </div>
+        )}
+      </div>
+    </div>,
+    document.body
+  )
+}
+
+function ProjectBanner({ project, onExpand }) {
   const [idx, setIdx] = useState(0)
   const media = project.media || []
 
   if (!media.length) {
     return (
-      <div className={`relative h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}>
+      <div className={`relative h-52 bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}>
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]" />
         <div className="text-white/80 group-hover:scale-110 transition-transform duration-500">{project.icon}</div>
         <div className="absolute top-3 right-3">
@@ -447,12 +571,11 @@ function ProjectBanner({ project }) {
   const total = media.length
   const prev = (e) => { e.stopPropagation(); setIdx((i) => (i - 1 + total) % total) }
   const next = (e) => { e.stopPropagation(); setIdx((i) => (i + 1) % total) }
-
   const blockContext = (e) => e.preventDefault()
 
   return (
     <div
-      className="relative h-48 overflow-hidden bg-black group/banner select-none"
+      className="relative h-52 overflow-hidden bg-black group/banner select-none"
       onContextMenu={blockContext}
     >
       {current.t === 'img' ? (
@@ -463,30 +586,26 @@ function ProjectBanner({ project }) {
             draggable="false"
             onContextMenu={blockContext}
             onDragStart={blockContext}
-            className="w-full h-full object-cover object-top transition-opacity duration-300 pointer-events-none"
+            className="w-full h-full object-contain transition-opacity duration-300 pointer-events-none"
           />
-          {/* transparent shield blocks right-click & drag on image */}
           <div className="absolute inset-0 z-[1]" onContextMenu={blockContext} />
         </>
       ) : (
-        <video
-          key={current.src}
-          src={current.src}
-          className="w-full h-full object-contain"
-          autoPlay
-          muted
-          loop
-          playsInline
-          controls
-          controlsList="nodownload nofullscreen"
-          disablePictureInPicture
-          onContextMenu={blockContext}
-        />
+        <VideoPlayer src={current.src} project={project} />
       )}
 
       {current.t === 'img' && (
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-[2]" />
       )}
+
+      {/* Fullscreen expand button */}
+      <button
+        onClick={(e) => { e.stopPropagation(); onExpand(idx) }}
+        className="absolute top-3 left-3 w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white opacity-70 hover:opacity-100 transition-opacity z-20 hover:bg-black/70"
+        title="View fullscreen"
+      >
+        <FiMaximize2 className="text-xs" />
+      </button>
 
       {/* Prev / Next arrows */}
       {total > 1 && (
@@ -515,16 +634,14 @@ function ProjectBanner({ project }) {
         </div>
       )}
 
-      {/* Video badge */}
       {current.t === 'vid' && (
-        <div className="absolute top-3 left-3 z-20">
+        <div className="absolute top-3 right-12 z-20">
           <span className="bg-black/50 backdrop-blur-sm text-violet-300 text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 border border-violet-400/30">
             <FiVideo className="text-[9px]" /> Demo
           </span>
         </div>
       )}
 
-      {/* Category badge */}
       <div className="absolute top-3 right-3 z-20">
         <span className="bg-black/30 backdrop-blur-sm rounded-full px-3 py-1 text-xs text-white font-medium border border-white/20">{project.category}</span>
       </div>
@@ -533,22 +650,32 @@ function ProjectBanner({ project }) {
 }
 
 const categories = ['All', 'AI', 'Web', 'Mobile', 'Backend', 'Enterprise']
+const PAGE_SIZE = 3
 
 export default function Projects() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const [activeCategory, setActiveCategory] = useState('All')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [lightbox, setLightbox] = useState(null) // { media: [], idx: number }
   const { theme } = useTheme()
   const isDark = theme === 'dark'
 
   const filtered = activeCategory === 'All' ? projects : projects.filter((p) => p.category === activeCategory)
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
+  const paginated = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
+
+  const handleCategory = (cat) => {
+    setActiveCategory(cat)
+    setCurrentPage(1)
+  }
 
   return (
     <section id="projects" ref={ref} className="py-20 px-4 sm:px-8 lg:px-14">
       <div className="w-full">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
+          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
@@ -560,7 +687,7 @@ export default function Projects() {
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => handleCategory(cat)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCategory === cat
                     ? 'bg-gradient-to-r from-violet-600 to-cyan-600 text-white shadow-lg shadow-violet-500/25'
@@ -576,17 +703,16 @@ export default function Projects() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mt-10">
-          {filtered.map((project, i) => (
+          {paginated.map((project, i) => (
             <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`glass-card rounded-3xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl flex flex-col ${
+              key={`${project.id}-${currentPage}`}
+              initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className={`glass-card rounded-3xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl flex flex-col relative ${
                 project.featured ? 'ring-2 ring-violet-500/40' : ''
               }`}
             >
-              {/* Featured badge */}
               {project.featured && (
                 <div className="absolute top-3 left-3 z-10">
                   <span className="bg-gradient-to-r from-violet-500 to-cyan-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">
@@ -594,7 +720,6 @@ export default function Projects() {
                   </span>
                 </div>
               )}
-              {/* Role badge */}
               {project.role && (
                 <div className="absolute top-3 left-3 z-10">
                   <span className="bg-black/40 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full border border-white/20">
@@ -603,16 +728,12 @@ export default function Projects() {
                 </div>
               )}
 
-              {/* Banner */}
-              <ProjectBanner project={project} />
+              <ProjectBanner project={project} onExpand={(idx) => setLightbox({ media: project.media, idx })} />
 
-              {/* Content */}
               <div className="p-6 flex flex-col flex-1">
                 <div className="mb-4">
                   <p className={`text-xs font-mono mb-1 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{project.subtitle}</p>
-                  <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                    {project.title}
-                  </h3>
+                  <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>{project.title}</h3>
                   <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{project.description}</p>
                 </div>
 
@@ -653,7 +774,76 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center justify-center gap-3 mt-10"
+          >
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+                currentPage === 1
+                  ? 'opacity-30 cursor-not-allowed glass-card'
+                  : isDark
+                    ? 'glass-card hover:bg-white/10 text-white'
+                    : 'glass-card hover:bg-violet-50 text-slate-700'
+              }`}
+            >
+              <FiChevronLeft />
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`w-9 h-9 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  page === currentPage
+                    ? 'bg-gradient-to-r from-violet-600 to-cyan-600 text-white shadow-lg shadow-violet-500/25'
+                    : isDark
+                      ? 'glass-card text-slate-400 hover:text-white hover:bg-white/8'
+                      : 'glass-card text-slate-500 hover:text-violet-700 hover:bg-violet-50'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+                currentPage === totalPages
+                  ? 'opacity-30 cursor-not-allowed glass-card'
+                  : isDark
+                    ? 'glass-card hover:bg-white/10 text-white'
+                    : 'glass-card hover:bg-violet-50 text-slate-700'
+              }`}
+            >
+              <FiChevronRight />
+            </button>
+          </motion.div>
+        )}
+
+        {/* Page info */}
+        {totalPages > 1 && (
+          <p className={`text-center text-xs mt-3 ${isDark ? 'text-slate-600' : 'text-slate-400'}`}>
+            Showing {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filtered.length)} of {filtered.length} projects
+          </p>
+        )}
       </div>
+
+      {lightbox && (
+        <MediaLightbox
+          media={lightbox.media}
+          initialIdx={lightbox.idx}
+          onClose={() => setLightbox(null)}
+        />
+      )}
     </section>
   )
 }

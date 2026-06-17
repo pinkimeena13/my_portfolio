@@ -4,10 +4,10 @@ import { FiBriefcase, FiCalendar, FiMapPin, FiZap, FiUsers, FiCode, FiTrendingUp
 import { useTheme } from '../context/ThemeContext'
 
 const achievements = [
-  { icon: <FiZap className="text-amber-400" />, label: 'Projects Delivered', value: '10+', color: 'from-amber-500/20 to-orange-500/10', border: 'border-amber-500/20' },
-  { icon: <FiUsers className="text-cyan-400" />, label: 'Clients Handled', value: '5+', color: 'from-cyan-500/20 to-blue-500/10', border: 'border-cyan-500/20' },
-  { icon: <FiCode className="text-violet-400" />, label: 'Technologies Used', value: '12+', color: 'from-violet-500/20 to-purple-500/10', border: 'border-violet-500/20' },
-  { icon: <FiTrendingUp className="text-emerald-400" />, label: 'Years Experience', value: '2.6+', color: 'from-emerald-500/20 to-teal-500/10', border: 'border-emerald-500/20' },
+  { icon: <FiZap />,        label: 'Projects Delivered', value: '10+', color: '#f59e0b', glow: 'rgba(245,158,11,0.25)' },
+  { icon: <FiUsers />,      label: 'Clients Handled',   value: '5+',  color: '#06b6d4', glow: 'rgba(6,182,212,0.25)' },
+  { icon: <FiCode />,       label: 'Technologies Used', value: '12+', color: '#7c3aed', glow: 'rgba(124,58,237,0.25)' },
+  { icon: <FiTrendingUp />, label: 'Years Experience',  value: '2+',  color: '#10b981', glow: 'rgba(16,185,129,0.25)' },
 ]
 
 const responsibilities = [
@@ -20,31 +20,28 @@ const responsibilities = [
 ]
 
 const timeline = [
-  {
-    icon: '🚀',
-    title: 'Joined as Software Developer',
-    desc: 'Started full-stack development journey, working on React & Angular projects.',
-    color: '#7c3aed',
-  },
-  {
-    icon: '⚙️',
-    title: 'Backend & Enterprise Development',
-    desc: 'Built NestJS/MongoDB APIs for Setu AgriTech & integrated SAP BTP workflows.',
-    color: '#f59e0b',
-  },
-  {
-    icon: '📱',
-    title: 'Mobile & International Projects',
-    desc: 'Led React Native migration for Shouta (Australia), improved performance by 40%.',
-    color: '#06b6d4',
-  },
-  {
-    icon: '🤖',
-    title: 'AI & Advanced Projects',
-    desc: 'Built AI Resume Builder with React + Strapi, expanding into AI-powered tools.',
-    color: '#10b981',
-  },
+  { icon: '🚀', title: 'Joined as Software Developer', desc: 'Started full-stack development journey, working on React & Angular projects.', color: '#7c3aed' },
+  { icon: '⚙️', title: 'Backend & Enterprise Development', desc: 'Built NestJS/MongoDB APIs for Setu AgriTech & integrated SAP BTP workflows.', color: '#f59e0b' },
+  { icon: '📱', title: 'Mobile & International Projects', desc: 'Led React Native migration for Shouta (Australia), improved performance by 40%.', color: '#06b6d4' },
+  { icon: '🤖', title: 'AI & Advanced Projects', desc: 'Built AI Resume Builder with React + Strapi, expanding into AI-powered tools.', color: '#10b981' },
 ]
+
+const techs = ['React.js', 'React Native', 'Angular', 'NestJS', 'Node.js', 'TypeScript', 'MongoDB', 'MySQL', 'SAP BTP', 'Strapi', 'Tailwind CSS', 'REST APIs']
+
+const statVariants = {
+  hidden: { opacity: 0, scale: 0.7, y: 20 },
+  visible: (i) => ({ opacity: 1, scale: 1, y: 0, transition: { duration: 0.45, delay: i * 0.09, ease: [0.34, 1.56, 0.64, 1] } }),
+}
+
+const respVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (i) => ({ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.3 + i * 0.07 } }),
+}
+
+const timelineVariants = {
+  hidden: { opacity: 0, x: -24 },
+  visible: (i) => ({ opacity: 1, x: 0, transition: { duration: 0.45, delay: 0.4 + i * 0.1 } }),
+}
 
 export default function Experience() {
   const ref = useRef(null)
@@ -53,59 +50,71 @@ export default function Experience() {
   const isDark = theme === 'dark'
 
   return (
-    <section id="experience" ref={ref} className="py-20 px-4 sm:px-8 lg:px-14">
+    <section id="experience" ref={ref} className="py-20 px-4 sm:px-8 lg:px-14 section-glow">
       <div className="w-full">
+
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 36, filter: 'blur(8px)' }}
+          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
           <p className="section-subtitle">My journey</p>
           <h2 className="section-title">Work Experience</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-violet-500 to-cyan-500 mx-auto rounded-full mt-4" />
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={inView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="divider-line w-16 h-1 bg-gradient-to-r from-violet-500 to-cyan-500 mx-auto rounded-full mt-4"
+          />
         </motion.div>
 
-        {/* Achievement stats row */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
-        >
+        {/* Achievement stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {achievements.map((a, i) => (
             <motion.div
               key={a.label}
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.15 + i * 0.08 }}
-              whileHover={{ y: -4, scale: 1.02 }}
-              className={`glass-card rounded-2xl p-5 border ${a.border} bg-gradient-to-br ${a.color} text-center group`}
+              custom={i}
+              variants={statVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              whileHover={{ y: -6, scale: 1.04, transition: { duration: 0.2 } }}
+              className="relative rounded-2xl overflow-hidden cursor-default group"
+              style={{
+                background: isDark ? `${a.color}12` : `${a.color}08`,
+                border: `1px solid ${a.color}25`,
+              }}
             >
-              <div className="text-2xl mb-2 flex justify-center group-hover:scale-110 transition-transform duration-300">
-                {a.icon}
+              {/* Hover glow */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                style={{ boxShadow: `inset 0 0 30px ${a.glow}`, border: `1px solid ${a.color}40` }}
+              />
+              <div className="h-0.5" style={{ background: `linear-gradient(90deg, ${a.color}, transparent)` }} />
+              <div className="p-5 text-center relative z-10">
+                <div className="text-2xl mb-2 flex justify-center" style={{ color: a.color }}>
+                  {a.icon}
+                </div>
+                <div className="text-2xl font-black mb-1 stat-number">{a.value}</div>
+                <div className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{a.label}</div>
               </div>
-              <div className="text-2xl font-black gradient-text mb-1">{a.value}</div>
-              <div className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{a.label}</div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Main experience card */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="glass-card glow-border rounded-3xl overflow-hidden mb-12"
+          initial={{ opacity: 0, y: 44, filter: 'blur(6px)' }}
+          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="neo-card mb-12"
+          style={{ borderRadius: '1.5rem' }}
         >
-          {/* Top gradient banner */}
-          <div className="h-2 bg-gradient-to-r from-violet-600 via-purple-500 to-cyan-500" />
+          <div className="h-1 bg-gradient-to-r from-violet-600 via-purple-500 to-cyan-500" />
 
           <div className="p-8 md:p-10">
-            {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
               <div className="flex items-start gap-5">
-                {/* Company logo placeholder */}
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center flex-shrink-0 shadow-lg shadow-violet-500/30">
                   <FiBriefcase className="text-white text-2xl" />
                 </div>
@@ -134,13 +143,11 @@ export default function Experience() {
               </div>
             </div>
 
-            {/* Description */}
             <p className={`leading-relaxed mb-8 text-sm md:text-base ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
               Gained hands-on experience in full-stack web and mobile application development, working
               with front-end, back-end, and cross-platform technologies to create secure and functional
               digital solutions. Contributed to improving project efficiency, system scalability, and
-              user experience through innovative solutions. Cultivated strong problem-solving skills,
-              managed direct client communications, and excelled in a fast-paced, collaborative environment.
+              user experience. Managed direct client communications in a fast-paced, collaborative environment.
             </p>
 
             {/* Responsibilities grid */}
@@ -148,10 +155,12 @@ export default function Experience() {
               {responsibilities.map((r, i) => (
                 <motion.div
                   key={r.text}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + i * 0.06 }}
-                  className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-300 ${
+                  custom={i}
+                  variants={respVariants}
+                  initial="hidden"
+                  animate={inView ? 'visible' : 'hidden'}
+                  whileHover={{ x: 4 }}
+                  className={`flex items-start gap-3 p-3 rounded-xl transition-colors duration-300 ${
                     isDark ? 'hover:bg-white/5' : 'hover:bg-violet-50'
                   }`}
                 >
@@ -163,58 +172,67 @@ export default function Experience() {
 
             {/* Tech stack */}
             <div className={`pt-6 border-t ${isDark ? 'border-white/5' : 'border-violet-100'}`}>
-              <p className={`text-xs font-mono uppercase tracking-widest mb-3 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Technologies</p>
-              <div className="flex flex-wrap gap-2">
-                {['React.js', 'React Native', 'Angular', 'NestJS', 'Node.js', 'TypeScript', 'MongoDB', 'MySQL', 'SAP BTP', 'Strapi', 'Tailwind CSS', 'REST APIs'].map((tech) => (
+              <p className={`text-xs font-mono uppercase tracking-widest mb-4 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Technologies</p>
+              <motion.div
+                variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.04 } } }}
+                initial="hidden"
+                animate={inView ? 'visible' : 'hidden'}
+                className="flex flex-wrap gap-2"
+              >
+                {techs.map((tech) => (
                   <motion.span
                     key={tech}
-                    whileHover={{ scale: 1.08 }}
+                    variants={{ hidden: { opacity: 0, scale: 0.7 }, visible: { opacity: 1, scale: 1, transition: { ease: 'backOut' } } }}
+                    whileHover={{ scale: 1.1, y: -2 }}
                     className="tag text-xs cursor-default"
                   >
                     {tech}
                   </motion.span>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>
 
         {/* Career timeline */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
+          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.6, delay: 0.35 }}
         >
-          <h3 className={`text-lg font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Career Milestones</h3>
+          <h3 className={`text-lg font-bold mb-7 ${isDark ? 'text-white' : 'text-slate-900'}`}>Career Milestones</h3>
           <div className="relative">
-            {/* Vertical line at exactly left-5 (20px) */}
             <div className="absolute left-5 top-2 bottom-2 w-0.5 timeline-line" />
             <div className="space-y-5 pl-14">
               {timeline.map((item, i) => (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
+                  custom={i}
+                  variants={timelineVariants}
+                  initial="hidden"
+                  animate={inView ? 'visible' : 'hidden'}
                   className="relative group"
                 >
-                  {/* line=left-5(20px), pl-14(56px), dot w-4(16px) → left edge at 56-44=12px → center at 20px ✓ */}
                   <div
                     className="absolute -left-[2.75rem] top-3 w-4 h-4 rounded-full group-hover:scale-125 transition-transform duration-300 flex items-center justify-center"
                     style={{
                       backgroundColor: item.color,
-                      boxShadow: `0 0 0 3px ${item.color}30, 0 0 12px ${item.color}50`,
+                      boxShadow: `0 0 0 3px ${item.color}30, 0 0 14px ${item.color}50`,
                     }}
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-white/80" />
                   </div>
-                  <div className={`glass-card rounded-2xl p-4 group-hover:-translate-y-0.5 transition-all duration-300 ${isDark ? 'hover:bg-white/5' : 'hover:bg-violet-50/50'}`}>
+                  <motion.div
+                    whileHover={{ x: 6 }}
+                    className={`neo-card p-4 group-hover:border-opacity-50`}
+                    style={{ borderRadius: '1rem' }}
+                  >
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-base">{item.icon}</span>
                       <span className={`text-sm font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.title}</span>
                     </div>
                     <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.desc}</p>
-                  </div>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>

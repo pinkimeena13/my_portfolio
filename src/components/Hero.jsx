@@ -12,7 +12,7 @@ const socials = [
 ]
 
 const stats = [
-  { value: '2.6+', label: 'Years' },
+  { value: '2+', label: 'Years' },
   { value: '10+', label: 'Projects' },
   { value: '12+', label: 'Tech Stack' },
   { value: '100%', label: 'Dedication' },
@@ -38,7 +38,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-svh flex items-center justify-center pt-20 pb-6 lg:py-10 overflow-hidden"
+      className="relative min-h-svh flex items-center justify-center pt-20 pb-6 lg:py-10"
     >
       <div className="w-full px-4 sm:px-8 lg:px-14">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -208,13 +208,13 @@ export default function Hero() {
                 <span className={`text-[10px] font-mono font-medium ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>Passionate Builder</span>
               </motion.div>
 
-              {/* 2.6+ badge */}
+              {/* 2+ badge */}
               <motion.div
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: 1 }}
                 className="absolute top-1/2 -left-14 glass-card glow-border rounded-xl px-2.5 py-1.5 text-center hidden sm:block"
               >
-                <div className="gradient-text font-black text-sm leading-none">2.6+</div>
+                <div className="gradient-text font-black text-sm leading-none">2+</div>
                 <div className={`text-xs mt-0.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>yrs exp</div>
               </motion.div>
             </div>

@@ -58,14 +58,19 @@ export default function Contact() {
     <section id="contact" ref={ref} className="py-20 px-4 sm:px-8 lg:px-14">
       <div className="w-full">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 36, filter: 'blur(8px)' }}
+          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
           <p className="section-subtitle">Let's talk</p>
           <h2 className="section-title">Get In Touch</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-violet-500 to-cyan-500 mx-auto rounded-full mt-4" />
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={inView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="divider-line w-16 h-1 bg-gradient-to-r from-violet-500 to-cyan-500 mx-auto rounded-full mt-4"
+          />
           <p className="text-slate-400 mt-6 max-w-xl mx-auto">
             Have an interesting project, collaboration idea, or just want to talk tech?
             I'd love to hear from you — my inbox is always open!

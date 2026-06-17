@@ -249,3 +249,168 @@ body.light input:focus, body.light textarea:focus {
 @media (prefers-reduced-motion: reduce) {
   .aurora-blob, .animate-float, .animate-spin-slow { animation: none !important; }
 }
+
+/* ── Responsive typography ── */
+@media (max-width: 480px) {
+  .section-title { font-size: 1.75rem !important; }
+  .section-subtitle { font-size: 0.65rem !important; letter-spacing: 0.12em; }
+}
+
+/* ══════════════════════════════════════════
+   NEO-CARD  — modern 2026 card design system
+   ══════════════════════════════════════════ */
+
+.neo-card {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.34, 1.46, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark .neo-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.055) 0%, rgba(124,58,237,0.06) 100%);
+  border: 1px solid rgba(124,58,237,0.18);
+}
+
+body.light .neo-card {
+  background: linear-gradient(145deg, #ffffff 0%, rgba(124,58,237,0.025) 100%);
+  border: 1px solid rgba(124,58,237,0.14);
+  box-shadow: 0 2px 16px rgba(124,58,237,0.05);
+}
+
+.neo-card:hover {
+  transform: translateY(-8px) scale(1.015);
+}
+
+body.dark .neo-card:hover {
+  border-color: rgba(124,58,237,0.5);
+  box-shadow:
+    0 0 0 1px rgba(124,58,237,0.25),
+    0 24px 60px rgba(124,58,237,0.18),
+    0 8px 24px rgba(0,0,0,0.45);
+}
+
+body.light .neo-card:hover {
+  border-color: rgba(124,58,237,0.3);
+  box-shadow:
+    0 0 0 1px rgba(124,58,237,0.15),
+    0 20px 40px rgba(124,58,237,0.12),
+    0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* Gradient border that appears on hover */
+.neo-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.7), rgba(6,182,212,0.5), rgba(124,58,237,0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+}
+
+.neo-card:hover::before { opacity: 1; }
+
+/* Shimmer sweep on hover */
+.neo-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  transform: skewX(-12deg);
+  pointer-events: none;
+  z-index: 1;
+  transition: none;
+}
+
+.neo-card:hover::after {
+  animation: neoShimmer 0.75s ease forwards;
+}
+
+@keyframes neoShimmer {
+  to { left: 160%; }
+}
+
+/* ── Section glow spotlights ── */
+.section-glow {
+  position: relative;
+}
+
+.section-glow::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(124,58,237,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ── Glass card refinements ── */
+body.dark .glass-card:hover {
+  border-color: rgba(124,58,237,0.22);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(124,58,237,0.1);
+}
+
+body.light .glass-card:hover {
+  border-color: rgba(124,58,237,0.22);
+  box-shadow: 0 8px 30px rgba(124,58,237,0.1);
+}
+
+/* ── Stat glow number ── */
+.stat-number {
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, #c4b5fd 0%, #67e8f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section divider line animate ── */
+.divider-line {
+  transform-origin: left center;
+}
+
+/* ── Floating card badge ── */
+.float-badge {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Skill icon glow ── */
+.skill-icon-wrap {
+  transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.neo-card:hover .skill-icon-wrap {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* ── Tag pill ── */
+body.dark .tag { backdrop-filter: blur(4px); }
+
+/* ── Mobile responsive ── */
+@media (max-width: 640px) {
+  .neo-card:hover { transform: translateY(-4px) scale(1.01); }
+}
+
+/* ── Float animation ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
