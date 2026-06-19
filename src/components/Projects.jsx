@@ -9,19 +9,16 @@ import bc1 from '../assets/projects/BCONNECT/HomePage.png'
 import bc2 from '../assets/projects/BCONNECT/CategoryPage.png'
 import bc3 from '../assets/projects/BCONNECT/ProductDetailPage.png'
 import bc4 from '../assets/projects/BCONNECT/BconnectBackendContendManager.png'
-import bcVideo from '../assets/projects/BCONNECT/video.mp4'
 // CDP
 import cdp1 from '../assets/projects/CDP/home.png'
 import cdp2 from '../assets/projects/CDP/2.png'
 import cdp3 from '../assets/projects/CDP/3.png'
 import cdp4 from '../assets/projects/CDP/4.png'
-import cdpVideo from '../assets/projects/CDP/video.mp4'
 // SSEC
 import ssec1 from '../assets/projects/SSEC/home.png'
 import ssec2 from '../assets/projects/SSEC/courses.png'
 import ssec3 from '../assets/projects/SSEC/about.png'
 import ssec4 from '../assets/projects/SSEC/admission.png'
-import ssecVideo from '../assets/projects/SSEC/video.mp4'
 // Hashproma
 import hp1 from '../assets/projects/Hashproma/home.png'
 import hp2 from '../assets/projects/Hashproma/2.png'
@@ -40,7 +37,6 @@ import rest2 from '../assets/projects/restaurant/2.png'
 import rest3 from '../assets/projects/restaurant/3.png'
 import rest4 from '../assets/projects/restaurant/4.png'
 import rest5 from '../assets/projects/restaurant/5.png'
-import restVideo from '../assets/projects/restaurant/video.mp4'
 // 6Meal Web
 import meal1 from '../assets/projects/6meal/1.png'
 import meal2 from '../assets/projects/6meal/2.png'
@@ -50,9 +46,6 @@ import meal5 from '../assets/projects/6meal/5.png'
 import meal6 from '../assets/projects/6meal/6.png'
 import meal7 from '../assets/projects/6meal/7.png'
 import meal8 from '../assets/projects/6meal/8.png'
-import mealVideo from '../assets/projects/6meal/video.mp4'
-// Digital Board
-import dbVideo from '../assets/projects/Digital Bord/video.mp4'
 // Shouta
 import sh1 from '../assets/projects/shouta/1.png'
 import sh2 from '../assets/projects/shouta/2.png'
@@ -61,7 +54,6 @@ import sh4 from '../assets/projects/shouta/4.png'
 import sh5 from '../assets/projects/shouta/5.png'
 import sh6 from '../assets/projects/shouta/6.png'
 import sh7 from '../assets/projects/shouta/7.png'
-import shVideo from '../assets/projects/shouta/video.mp4'
 // SAP BTP Interview Management
 import im1 from '../assets/projects/SAP BTP interviewManagement/1.png'
 import im2 from '../assets/projects/SAP BTP interviewManagement/2.png'
@@ -76,10 +68,8 @@ import im10 from '../assets/projects/SAP BTP interviewManagement/10.png'
 import im11 from '../assets/projects/SAP BTP interviewManagement/11.png'
 import im12 from '../assets/projects/SAP BTP interviewManagement/12.png'
 import im13 from '../assets/projects/SAP BTP interviewManagement/13.png'
-import imVideo from '../assets/projects/SAP BTP interviewManagement/video.mp4'
 // Setu
 import setu1 from '../assets/projects/Setu/1.png'
-import setuVideo from '../assets/projects/Setu/video.mp4'
 // SAP BTP Outlook
 import sap1 from '../assets/projects/SAP BTP Outlook/1.png'
 import sap2 from '../assets/projects/SAP BTP Outlook/2.png'
@@ -89,7 +79,18 @@ import sap5 from '../assets/projects/SAP BTP Outlook/5.png'
 import sap6 from '../assets/projects/SAP BTP Outlook/6.png'
 import sap7 from '../assets/projects/SAP BTP Outlook/7.png'
 import sap8 from '../assets/projects/SAP BTP Outlook/8.png'
-import sapVideo from '../assets/projects/SAP BTP Outlook/video.mp4'
+
+const RELEASE = 'https://github.com/pinkimeena13/my_portfolio/releases/download/v1.0-media'
+const bcVideo = `${RELEASE}/bconnect-video.mp4`
+const cdpVideo = `${RELEASE}/cdp-video.mp4`
+const ssecVideo = `${RELEASE}/ssec-video.mp4`
+const restVideo = `${RELEASE}/restaurant-video.mp4`
+const mealVideo = `${RELEASE}/6meal-video.mp4`
+const dbVideo = `${RELEASE}/digital-bord-video.mp4`
+const shVideo = `${RELEASE}/shouta-video.mp4`
+const imVideo = `${RELEASE}/sap-interview-video.mp4`
+const setuVideo = `${RELEASE}/setu-video.mp4`
+const sapVideo = `${RELEASE}/sap-outlook-video.mp4`
 
 const projects = [
   // ── 1. Shouta
