@@ -9,8 +9,6 @@ const learningPaths = [
     icon: <FiCpu className="text-2xl" />,
     color: '#a855f7',
     gradient: 'from-fuchsia-600 via-violet-600 to-purple-700',
-    status: 'In Progress',
-    statusColor: 'bg-amber-400',
     progress: 35,
     description: 'Exploring AI/ML fundamentals to build smarter applications and integrate AI into web products.',
     topics: [
@@ -29,8 +27,6 @@ const learningPaths = [
     icon: <FiCloud className="text-2xl" />,
     color: '#06b6d4',
     gradient: 'from-blue-600 via-cyan-600 to-teal-600',
-    status: 'Active',
-    statusColor: 'bg-emerald-400',
     progress: 60,
     description: 'Deepening expertise in SAP Business Technology Platform — process automation, integrations, and enterprise workflows.',
     topics: [
@@ -129,10 +125,6 @@ export default function LearningPlan() {
                     </div>
                     <div>
                       <h3 className={`font-bold text-lg ${isDark ? 'text-white' : 'text-slate-900'}`}>{path.category}</h3>
-                      <div className="flex items-center gap-1.5 mt-0.5">
-                        <span className={`w-1.5 h-1.5 rounded-full ${path.statusColor} animate-pulse`} />
-                        <span className="text-xs font-mono" style={{ color: path.color }}>{path.status}</span>
-                      </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-1.5 text-xs glass-card rounded-xl px-2.5 py-1.5">

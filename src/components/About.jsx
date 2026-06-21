@@ -23,7 +23,7 @@ const interests = [
   {
     icon: <FiServer className="text-xl" />,
     title: 'Backend & APIs',
-    desc: 'Scalable REST APIs, MongoDB, MySQL, SAP BTP workflows and enterprise integrations.',
+    desc: 'Scalable REST APIs, MongoDB, MySQL, Java backends and enterprise-grade integrations.',
     color: '#f59e0b',
     grad: 'from-amber-600/20 to-orange-600/10',
     border: 'rgba(245,158,11,0.3)',
@@ -40,8 +40,8 @@ const interests = [
 
 const highlights = [
   'Led React Native migration — 40% stability gain',
-  'Built enterprise SAP BTP workflow automation',
-  'Delivered 10+ projects across 4 industries',
+  'Built scalable Java & NestJS enterprise backends',
+  'Delivered 8+ projects across 4 industries',
   'End-to-end client communication & delivery',
 ]
 
@@ -106,11 +106,11 @@ export default function About() {
               <p>
                 Software Developer with <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>2+ years at</span>{' '}
                 <span className="text-violet-500 font-semibold">Singaji Software Solution</span>, delivering
-                production-grade web, mobile & enterprise applications. Led 10+ projects — from React Native
+                production-grade web, mobile & enterprise applications. Led 8+ projects — from React Native
                 migration for an Australian client to architecting a Cyber Defense Portal.
               </p>
               <p>
-                Stack: <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>React, Angular, NestJS, Node.js, React Native, MongoDB, MySQL, TypeScript & SAP BTP</span>{' '}
+                Stack: <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>React, Angular, NestJS, Node.js, React Native, MongoDB, MySQL, TypeScript & Java</span>{' '}
                 — paired with direct client communication and clean, on-time delivery.
               </p>
             </div>

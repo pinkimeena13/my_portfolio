@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
-import { FiGithub, FiLinkedin, FiMail, FiExternalLink, FiCode, FiStar, FiChevronDown } from 'react-icons/fi'
+import { FiGithub, FiLinkedin, FiMail, FiExternalLink, FiCode, FiStar, FiChevronDown, FiDownload } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
+import resumePDF from '../assets/resume/Pinki_Meena_Resume.pdf'
 
 const GMAIL_URL = 'https://mail.google.com/mail/?view=cm&fs=1&to=pinkimeena52913@gmail.com&su=Let%27s+Connect'
 
@@ -13,8 +14,8 @@ const socials = [
 
 const stats = [
   { value: '2+', label: 'Years' },
-  { value: '10+', label: 'Projects' },
-  { value: '12+', label: 'Tech Stack' },
+  { value: '8+', label: 'Projects' },
+  { value: '10+', label: 'Tech Stack' },
   { value: '100%', label: 'Dedication' },
 ]
 
@@ -126,8 +127,8 @@ export default function Hero() {
               variants={itemVariants}
               className={`text-base leading-relaxed max-w-lg mb-8 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}
             >
-              Building secure, scalable web & mobile applications with modern JavaScript frameworks.
-              Turning complex business requirements into elegant digital solutions since 2023.
+              Building secure, scalable web & mobile applications using modern frameworks and enterprise technologies.
+              Turning complex business requirements into elegant digital solutions since 2024.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-10">
@@ -140,6 +141,13 @@ export default function Hero() {
               <button onClick={openMail} className="btn-outline">
                 <FiMail /> Let's Connect
               </button>
+              <a
+                href={resumePDF}
+                download="Pinki_Meena_Resume.pdf"
+                className="btn-outline flex items-center gap-2"
+              >
+                <FiDownload /> Resume
+              </a>
             </motion.div>
 
             {/* Socials */}

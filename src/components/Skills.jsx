@@ -4,10 +4,11 @@ import { useTheme } from '../context/ThemeContext'
 import {
   SiJavascript, SiTypescript, SiHtml5, SiReact, SiAngular,
   SiNodedotjs, SiExpress, SiNestjs, SiMongodb, SiMysql,
-  SiTailwindcss, SiBootstrap, SiGit, SiGithub, SiPostman,
+  SiTailwindcss, SiBootstrap, SiGit, SiGithub, SiPostman, SiJira, SiAnthropic,
 } from 'react-icons/si'
 import { FaCss3Alt, FaJava } from 'react-icons/fa'
 import { VscVscode } from 'react-icons/vsc'
+import { FaBolt, FaCode } from 'react-icons/fa'
 
 const skillGroups = [
   {
@@ -15,11 +16,11 @@ const skillGroups = [
     color: 'violet',
     accent: '#7c3aed',
     skills: [
-      { name: 'HTML5',       icon: <SiHtml5 />,      color: '#E34F26', level: 95 },
+      { name: 'Java',        icon: <FaJava />,        color: '#ED8B00', level: 75 },
       { name: 'JavaScript',  icon: <SiJavascript />,  color: '#F7DF1E', level: 90 },
-      { name: 'CSS3',        icon: <FaCss3Alt />,     color: '#1572B6', level: 90 },
       { name: 'TypeScript',  icon: <SiTypescript />,  color: '#3178C6', level: 80 },
-      { name: 'Java',        icon: <FaJava />,        color: '#ED8B00', level: 30 },
+      { name: 'HTML5',       icon: <SiHtml5 />,       color: '#E34F26', level: 95 },
+      { name: 'CSS3',        icon: <FaCss3Alt />,     color: '#1572B6', level: 90 },
     ],
   },
   {
@@ -48,25 +49,23 @@ const skillGroups = [
       { name: 'Postman',     icon: <SiPostman />,     color: '#FF6C37', level: 85 },
       { name: 'MongoDB',     icon: <SiMongodb />,     color: '#47A248', level: 80 },
       { name: 'MySQL',       icon: <SiMysql />,       color: '#4479A1', level: 75 },
+      { name: 'JIRA',        icon: <SiJira />,        color: '#0052CC', level: 80 },
+      { name: 'Cursor',      icon: <FaCode />,         color: '#9b59b6', level: 80 },
+      { name: 'Claude Code', icon: <SiAnthropic />,   color: '#d97706', level: 85 },
+      { name: 'Antigravity', icon: <FaBolt />,        color: '#a855f7', level: 75 },
     ],
   },
 ]
 
-const specialized = ['SAP BTP', 'Process Automation', 'Microsoft Outlook Integration', 'Adaptive Cards', 'Strapi CMS', 'Payment Gateways', 'Cyber Defense']
-
-const labelToLevel = (level) => {
-  if (level >= 90) return 'Expert'
-  if (level >= 75) return 'Advanced'
-  if (level >= 50) return 'Intermediate'
-  return 'Beginner'
-}
-
-const labelColor = (level) => {
-  if (level >= 90) return { bg: 'rgba(16,185,129,0.15)', color: '#10b981' }
-  if (level >= 75) return { bg: 'rgba(124,58,237,0.15)', color: '#7c3aed' }
-  if (level >= 50) return { bg: 'rgba(6,182,212,0.15)', color: '#06b6d4' }
-  return { bg: 'rgba(148,163,184,0.15)', color: '#94a3b8' }
-}
+const specialized = [
+  { icon: '⚙️', label: 'Enterprise Workflow Automation', desc: 'Process automation & enterprise integrations', color: '#f59e0b' },
+  { icon: '📧', label: 'Microsoft Outlook Integration', desc: 'Email-based approvals via Adaptive Cards', color: '#0078d4' },
+  { icon: '🗂️', label: 'Adaptive Cards', desc: 'Rich interactive cards for enterprise apps', color: '#6366f1' },
+  { icon: '📦', label: 'Strapi CMS', desc: 'Headless CMS for dynamic content management', color: '#7c3aed' },
+  { icon: '💳', label: 'Payment Gateway Integration', desc: 'Secure payment flows in web & mobile apps', color: '#10b981' },
+  { icon: '🛡️', label: 'Cyber Defense Portal', desc: 'Threat detection & automated IP blocking', color: '#ef4444' },
+  { icon: '🤖', label: 'AI Integration', desc: 'LLM-powered features in production apps', color: '#a855f7' },
+]
 
 /* Animation variants */
 const sectionVariants = {
@@ -139,100 +138,46 @@ export default function Skills() {
                 animate={inView ? 'visible' : 'hidden'}
                 className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
               >
-                {group.skills.map((skill) => {
-                  const lc = labelColor(skill.level)
-                  return (
-                    <motion.div
-                      key={skill.name}
-                      variants={cardVariants}
-                      className="neo-card p-5 flex flex-col items-center gap-3 cursor-default group"
+                {group.skills.map((skill) => (
+                  <motion.div
+                    key={skill.name}
+                    variants={cardVariants}
+                    className="neo-card p-5 flex flex-col items-center gap-3 cursor-default group"
+                  >
+                    {/* Icon with glow bg */}
+                    <div
+                      className="skill-icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center text-[1.6rem] transition-all duration-300 group-hover:scale-110"
+                      style={{
+                        background: `linear-gradient(135deg, ${skill.color}22, ${skill.color}0e)`,
+                        border: `1px solid ${skill.color}35`,
+                        color: skill.color,
+                        boxShadow: `0 4px 18px ${skill.color}28, inset 0 1px 0 ${skill.color}20`,
+                      }}
                     >
-                      {/* Icon with glow bg */}
-                      <div
-                        className="skill-icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center text-3xl"
-                        style={{
-                          background: `${skill.color}18`,
-                          border: `1px solid ${skill.color}30`,
-                          color: skill.color,
-                        }}
-                      >
-                        {skill.icon}
-                      </div>
+                      {skill.icon}
+                    </div>
 
-                      <span className={`text-xs font-semibold text-center leading-tight ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
-                        {skill.name}
-                      </span>
+                    <span className={`text-xs font-semibold text-center leading-tight ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
+                      {skill.name}
+                    </span>
 
-                      {/* Progress bar */}
-                      <div className="w-full skill-bar">
-                        <motion.div
-                          className="skill-bar-fill"
-                          initial={{ width: 0 }}
-                          animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
-                          transition={{ duration: 1.3, delay: gi * 0.1 + 0.3, ease: 'easeOut' }}
-                          style={{ background: `linear-gradient(90deg, ${skill.color}cc, ${skill.color}66)` }}
-                        />
-                      </div>
-
-                      {/* Level pill */}
-                      <span
-                        className="text-[10px] font-bold px-2.5 py-0.5 rounded-full"
-                        style={{ background: lc.bg, color: lc.color }}
-                      >
-                        {labelToLevel(skill.level)}
-                      </span>
-                    </motion.div>
-                  )
-                })}
+                    {/* Progress bar */}
+                    <div className="w-full skill-bar">
+                      <motion.div
+                        className="skill-bar-fill"
+                        initial={{ width: 0 }}
+                        animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
+                        transition={{ duration: 1.3, delay: gi * 0.1 + 0.3, ease: 'easeOut' }}
+                        style={{ background: `linear-gradient(90deg, ${skill.color}cc, ${skill.color}66)` }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
             </div>
           ))}
         </div>
 
-        {/* Specialized */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-14"
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <span className="tag-amber tag text-xs font-semibold">Specialized</span>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={inView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.7, delay: 0.6 }}
-              className="flex-1 h-px origin-left"
-              style={{ background: 'linear-gradient(90deg, rgba(245,158,11,0.4), transparent)' }}
-            />
-          </motion.div>
-
-          <motion.div
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            className="flex flex-wrap gap-3"
-          >
-            {specialized.map((s) => (
-              <motion.span
-                key={s}
-                variants={tagVariants}
-                whileHover={{ scale: 1.07, y: -3 }}
-                className={`neo-card px-4 py-2 text-sm font-medium cursor-default ${
-                  isDark ? 'text-slate-300' : 'text-slate-700'
-                }`}
-                style={{ borderRadius: '0.75rem' }}
-              >
-                {s}
-              </motion.span>
-            ))}
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   )

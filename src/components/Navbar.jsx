@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiSun, FiMoon, FiMail } from 'react-icons/fi'
+import { FiSun, FiMoon, FiMail, FiDownload } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
+import resumePDF from '../assets/resume/Pinki_Meena_Resume.pdf'
 
 const links = [
   { label: 'About', href: '#about' },
@@ -112,6 +113,17 @@ export default function Navbar() {
             </AnimatePresence>
           </motion.button>
 
+          {/* Resume download */}
+          <motion.a
+            href={resumePDF}
+            download="Pinki_Meena_Resume.pdf"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="hidden lg:flex btn-outline items-center gap-2 text-sm"
+          >
+            <FiDownload className="text-sm" /> Resume
+          </motion.a>
+
           {/* Let's Connect */}
           <motion.button
             whileHover={{ scale: 1.04 }}
@@ -154,10 +166,18 @@ export default function Navbar() {
                   {l.label}
                 </button>
               ))}
+              <a
+                href={resumePDF}
+                download="Pinki_Meena_Resume.pdf"
+                className="btn-outline justify-center mt-2 flex items-center gap-2"
+                onClick={() => setOpen(false)}
+              >
+                <FiDownload /> Resume
+              </a>
               <motion.button
                 whileTap={{ scale: 0.97 }}
                 onClick={handleHireMe}
-                className="btn-primary justify-center mt-2"
+                className="btn-primary justify-center mt-1"
               >
                 <FiMail /> Let's Connect
               </motion.button>

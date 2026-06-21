@@ -7,7 +7,7 @@ import Hero from './components/Hero'
 const About         = lazy(() => import('./components/About'))
 const AreaOfInterest = lazy(() => import('./components/AreaOfInterest'))
 const Skills        = lazy(() => import('./components/Skills'))
-const AITools       = lazy(() => import('./components/AITools'))
+// const AITools       = lazy(() => import('./components/AITools'))
 const Experience = lazy(() => import('./components/Experience'))
 const Projects   = lazy(() => import('./components/Projects'))
 const LearningPlan = lazy(() => import('./components/LearningPlan'))
@@ -33,7 +33,7 @@ function App() {
             <About />
             <AreaOfInterest />
             <Skills />
-            <AITools />
+            {/* <AITools /> */}
             <Experience />
             <Projects />
             <LearningPlan />

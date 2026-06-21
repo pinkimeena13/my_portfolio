@@ -92,7 +92,7 @@ export default function AreaOfInterest() {
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
-          <p className="section-subtitle">What I love working on</p>
+          <p className="section-subtitle">My areas of expertise</p>
           <h2 className="section-title">Area of Interest</h2>
           <motion.div
             initial={{ scaleX: 0 }}

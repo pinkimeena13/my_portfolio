@@ -4,9 +4,9 @@ import { FiBriefcase, FiCalendar, FiMapPin, FiZap, FiUsers, FiCode, FiTrendingUp
 import { useTheme } from '../context/ThemeContext'
 
 const achievements = [
-  { icon: <FiZap />,        label: 'Projects Delivered', value: '10+', color: '#f59e0b', glow: 'rgba(245,158,11,0.25)' },
+  { icon: <FiZap />,        label: 'Projects Delivered', value: '8+',  color: '#f59e0b', glow: 'rgba(245,158,11,0.25)' },
   { icon: <FiUsers />,      label: 'Clients Handled',   value: '5+',  color: '#06b6d4', glow: 'rgba(6,182,212,0.25)' },
-  { icon: <FiCode />,       label: 'Technologies Used', value: '12+', color: '#7c3aed', glow: 'rgba(124,58,237,0.25)' },
+  { icon: <FiCode />,       label: 'Technologies Used', value: '10+', color: '#7c3aed', glow: 'rgba(124,58,237,0.25)' },
   { icon: <FiTrendingUp />, label: 'Years Experience',  value: '2+',  color: '#10b981', glow: 'rgba(16,185,129,0.25)' },
 ]
 
@@ -15,18 +15,18 @@ const responsibilities = [
   { icon: '🤝', text: 'Direct client communication & requirement gathering' },
   { icon: '📱', text: 'Cross-platform mobile apps with React Native' },
   { icon: '🔐', text: 'Secure API design, integration & best practices' },
-  { icon: '☁️', text: 'SAP BTP process automation & integrations' },
+  { icon: '☁️', text: 'Enterprise workflow automation & integrations' },
   { icon: '⚡', text: 'Performance optimization & scalable architecture' },
 ]
 
 const timeline = [
   { icon: '🚀', title: 'Joined as Software Developer', desc: 'Started full-stack development journey, working on React & Angular projects.', color: '#7c3aed' },
-  { icon: '⚙️', title: 'Backend & Enterprise Development', desc: 'Built NestJS/MongoDB APIs for Setu AgriTech & integrated SAP BTP workflows.', color: '#f59e0b' },
+  { icon: '⚙️', title: 'Backend & Enterprise Development', desc: 'Built NestJS/MongoDB APIs for Setu AgriTech & automated enterprise workflows.', color: '#f59e0b' },
   { icon: '📱', title: 'Mobile & International Projects', desc: 'Led React Native migration for Shouta (Australia), improved performance by 40%.', color: '#06b6d4' },
   { icon: '🤖', title: 'AI & Advanced Projects', desc: 'Built AI Resume Builder with React + Strapi, expanding into AI-powered tools.', color: '#10b981' },
 ]
 
-const techs = ['React.js', 'React Native', 'Angular', 'NestJS', 'Node.js', 'TypeScript', 'MongoDB', 'MySQL', 'SAP BTP', 'Strapi', 'Tailwind CSS', 'REST APIs']
+const techs = ['React.js', 'React Native', 'Angular', 'NestJS', 'Node.js', 'TypeScript', 'Java', 'MongoDB', 'MySQL', 'Strapi', 'Tailwind CSS', 'REST APIs']
 
 const statVariants = {
   hidden: { opacity: 0, scale: 0.7, y: 20 },
@@ -133,7 +133,7 @@ export default function Experience() {
               <div className={`flex flex-col gap-2 text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                 <div className="flex items-center gap-2">
                   <FiCalendar className="text-violet-400 flex-shrink-0" />
-                  <span className="font-medium">Nov 2023 – Present</span>
+                  <span className="font-medium">2024 – Present</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <FiMapPin className="text-cyan-400 flex-shrink-0" />

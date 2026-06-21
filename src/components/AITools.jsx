@@ -8,7 +8,7 @@ const tools = [
   {
     name: 'ChatGPT',
     brand: 'OpenAI',
-    desc: 'AI-powered assistant for code generation, debugging, and rapid problem solving in daily development.',
+    desc: 'Used daily across client projects for code generation, debugging, requirement analysis, and rapid prototyping.',
     icon: <SiOpenai />,
     color: '#10a37f',
     glow: 'rgba(16,163,127,0.3)',
@@ -17,7 +17,7 @@ const tools = [
   {
     name: 'Gemini',
     brand: 'Google',
-    desc: 'Google\'s multimodal AI for research, content generation, and intelligent code assistance.',
+    desc: 'Leveraged for technical research, documentation generation, and multimodal code assistance during development.',
     icon: <SiGooglegemini />,
     color: '#4285f4',
     glow: 'rgba(66,133,244,0.3)',
@@ -26,7 +26,7 @@ const tools = [
   {
     name: 'Claude Code',
     brand: 'Anthropic',
-    desc: 'Advanced AI coding agent for architecture decisions, complex refactoring, and deep code analysis.',
+    desc: 'Primary AI coding agent used for architecture decisions, complex refactoring, and deep code reviews in production projects.',
     icon: <SiAnthropic />,
     color: '#d97706',
     glow: 'rgba(217,119,6,0.3)',
@@ -35,7 +35,7 @@ const tools = [
   {
     name: 'Antigravity',
     brand: 'Antigravity',
-    desc: 'Innovative AI-powered productivity tool for automated workflows and creative problem solving.',
+    desc: 'AI productivity tool used to automate repetitive dev workflows and accelerate creative problem solving.',
     icon: <FiZap />,
     color: '#a855f7',
     glow: 'rgba(168,85,247,0.3)',
@@ -44,7 +44,7 @@ const tools = [
   {
     name: 'GitHub Copilot',
     brand: 'GitHub',
-    desc: 'AI pair programmer that suggests real-time code completions, functions, and boilerplate in the IDE.',
+    desc: 'Integrated into daily IDE workflow for real-time code completions, boilerplate reduction, and faster feature delivery.',
     icon: <SiGithubcopilot />,
     color: '#6e40c9',
     glow: 'rgba(110,64,201,0.3)',
@@ -78,7 +78,7 @@ export default function AITools() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <p className="section-subtitle">AI in my workflow</p>
+          <p className="section-subtitle">Tools I use at work</p>
           <h2 className="section-title">AI Tools I Use</h2>
           <motion.div
             initial={{ scaleX: 0 }}

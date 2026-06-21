@@ -1,5 +1,6 @@
-import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import { FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
+import resumePDF from '../assets/resume/Pinki_Meena_Resume.pdf'
 
 const links = [
   { label: 'About', href: '#about' },
@@ -64,7 +65,7 @@ export default function Footer() {
             ))}
           </nav>
 
-          {/* Socials */}
+          {/* Socials + Resume */}
           <div className="flex items-center gap-3">
             {socials.map((s) => (
               <a
@@ -78,6 +79,18 @@ export default function Footer() {
                 {s.icon}
               </a>
             ))}
+            <a
+              href={resumePDF}
+              download="Pinki_Meena_Resume.pdf"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-300 hover:-translate-y-0.5"
+              style={{
+                background: 'linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.1))',
+                border: '1px solid rgba(124,58,237,0.3)',
+                color: '#a78bfa',
+              }}
+            >
+              <FiDownload className="text-sm" /> Resume
+            </a>
           </div>
         </div>
       </div>
