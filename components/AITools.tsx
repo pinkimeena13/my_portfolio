@@ -1,6 +1,9 @@
+'use client'
+
+
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { useTheme } from '../context/ThemeContext'
+import { useTheme } from '@/components/providers/ThemeProvider'
 import { SiOpenai, SiGooglegemini, SiGithubcopilot, SiAnthropic } from 'react-icons/si'
 import { FiZap } from 'react-icons/fi'
 

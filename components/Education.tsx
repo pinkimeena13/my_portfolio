@@ -1,7 +1,10 @@
+'use client'
+
+
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { FiBook, FiCalendar, FiAward } from 'react-icons/fi'
-import { useTheme } from '../context/ThemeContext'
+import { useTheme } from '@/components/providers/ThemeProvider'
 
 const education = [
   {

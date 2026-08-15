@@ -1,7 +1,10 @@
+'use client'
+
+
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { FiCode, FiSmartphone, FiServer, FiCpu, FiCheckCircle } from 'react-icons/fi'
-import { useTheme } from '../context/ThemeContext'
+import { useTheme } from '@/components/providers/ThemeProvider'
 
 const interests = [
   {
@@ -57,7 +60,7 @@ const containerVariants = {
   visible: { transition: { staggerChildren: 0.1 } },
 }
 
-const cardVariants = {
+const cardVariants: any = {
   hidden: { opacity: 0, y: 30, scale: 0.9 },
   visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] } },
 }

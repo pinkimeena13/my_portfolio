@@ -1,6 +1,9 @@
+'use client'
+
+
 import { FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi'
-import { useTheme } from '../context/ThemeContext'
-import resumePDF from '../assets/resume/Pinki_Meena_Resume.pdf'
+import { useTheme } from '@/components/providers/ThemeProvider'
+
 
 const links = [
   { label: 'About', href: '#about' },
@@ -80,7 +83,7 @@ export default function Footer() {
               </a>
             ))}
             <a
-              href={resumePDF}
+              href="/resume/Pinki_Meena_Resume.pdf"
               download="Pinki_Meena_Resume.pdf"
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-300 hover:-translate-y-0.5"
               style={{

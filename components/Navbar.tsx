@@ -1,8 +1,9 @@
+'use client'
+
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiSun, FiMoon, FiMail, FiDownload } from 'react-icons/fi'
-import { useTheme } from '../context/ThemeContext'
-import resumePDF from '../assets/resume/Pinki_Meena_Resume.pdf'
+import { useTheme } from '@/components/providers/ThemeProvider'
 
 const links = [
   { label: 'About', href: '#about' },
@@ -115,7 +116,7 @@ export default function Navbar() {
 
           {/* Resume download */}
           <motion.a
-            href={resumePDF}
+            href="/resume/Pinki_Meena_Resume.pdf"
             download="Pinki_Meena_Resume.pdf"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
@@ -167,7 +168,7 @@ export default function Navbar() {
                 </button>
               ))}
               <a
-                href={resumePDF}
+                href="/resume/Pinki_Meena_Resume.pdf"
                 download="Pinki_Meena_Resume.pdf"
                 className="btn-outline justify-center mt-2 flex items-center gap-2"
                 onClick={() => setOpen(false)}

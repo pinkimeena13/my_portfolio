@@ -1,7 +1,10 @@
+'use client'
+
+
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { FiBriefcase, FiCalendar, FiMapPin, FiZap, FiUsers, FiCode, FiTrendingUp } from 'react-icons/fi'
-import { useTheme } from '../context/ThemeContext'
+import { useTheme } from '@/components/providers/ThemeProvider'
 
 const achievements = [
   { icon: <FiZap />,        label: 'Projects Delivered', value: '8+',  color: '#f59e0b', glow: 'rgba(245,158,11,0.25)' },

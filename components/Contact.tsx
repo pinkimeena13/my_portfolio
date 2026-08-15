@@ -1,7 +1,10 @@
+'use client'
+
+
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { FiMail, FiPhone, FiLinkedin, FiGithub, FiSend, FiMapPin } from 'react-icons/fi'
-import { useTheme } from '../context/ThemeContext'
+import { useTheme } from '@/components/providers/ThemeProvider'
 
 const contactInfo = [
   {

@@ -1,6 +1,9 @@
+'use client'
+
+
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { useTheme } from '../context/ThemeContext'
+import { useTheme } from '@/components/providers/ThemeProvider'
 
 const areas = [
   {

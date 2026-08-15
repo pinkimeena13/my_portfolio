@@ -1,8 +1,9 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
 import { FiGithub, FiLinkedin, FiMail, FiExternalLink, FiCode, FiStar, FiChevronDown, FiDownload } from 'react-icons/fi'
-import { useTheme } from '../context/ThemeContext'
-import resumePDF from '../assets/resume/Pinki_Meena_Resume.pdf'
+import { useTheme } from '@/components/providers/ThemeProvider'
 
 const GMAIL_URL = 'https://mail.google.com/mail/?view=cm&fs=1&to=pinkimeena52913@gmail.com&su=Let%27s+Connect'
 
@@ -142,7 +143,7 @@ export default function Hero() {
                 <FiMail /> Let's Connect
               </button>
               <a
-                href={resumePDF}
+                href={"/resume/Pinki_Meena_Resume.pdf"}
                 download="Pinki_Meena_Resume.pdf"
                 className="btn-outline flex items-center gap-2"
               >
