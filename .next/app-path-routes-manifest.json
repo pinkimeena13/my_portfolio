@@ -1,0 +1,7 @@
+{
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/icon.png/route": "/icon.png",
+  "/_not-found/page": "/_not-found",
+  "/page": "/"
+}
