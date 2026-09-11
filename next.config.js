@@ -1,101 +1,45 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-
-  // Skip type checking during build (types are checked in IDE)
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
-  // Performance optimizations
   compress: true,
 
-  // Optimize images
+  // Pin tracing to this project; a lockfile in the home dir otherwise wins.
+  outputFileTracingRoot: __dirname,
+
+  // Hide the Next.js dev-mode logo badge in the corner.
+  devIndicators: false,
+
   images: {
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Screenshots and portraits are static and versioned with the deploy.
+    minimumCacheTTL: 31536000,
   },
 
-  // Enable experimental features for better performance
+  // Tree-shake icon and motion imports down to what is actually used.
   experimental: {
-    optimizePackageImports: ['react-icons', 'framer-motion'],
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
 
-  // Headers for security and performance
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin'
-          },
+          { key: 'X-DNS-Prefetch-Control', value: 'on' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
         ],
       },
+      {
+        // Immutable, content-addressed static assets.
+        source: '/images/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      },
     ]
-  },
-
-  // Webpack optimizations
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      // Optimize client-side bundle
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          default: false,
-          vendors: false,
-          // Vendor chunk for react/react-dom
-          react: {
-            name: 'react-vendors',
-            test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
-            priority: 40,
-            enforce: true,
-          },
-          // Framer Motion
-          motion: {
-            name: 'framer-motion',
-            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-            priority: 30,
-            enforce: true,
-          },
-          // React Icons
-          icons: {
-            name: 'react-icons',
-            test: /[\\/]node_modules[\\/]react-icons[\\/]/,
-            priority: 25,
-            enforce: true,
-          },
-          // Other libraries
-          lib: {
-            name: 'lib-vendors',
-            test: /[\\/]node_modules[\\/](react-scroll|react-type-animation)[\\/]/,
-            priority: 20,
-            enforce: true,
-          },
-          // Common modules
-          commons: {
-            name: 'commons',
-            minChunks: 2,
-            priority: 10,
-          },
-        },
-      }
-    }
-    return config
   },
 }
 

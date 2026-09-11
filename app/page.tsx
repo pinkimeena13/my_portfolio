@@ -1,45 +1,37 @@
-'use client'
-
-import { Suspense, lazy } from 'react'
-import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
-
-// Lazy-load everything below the fold
-const About = lazy(() => import('@/components/About'))
-const AreaOfInterest = lazy(() => import('@/components/AreaOfInterest'))
-const Skills = lazy(() => import('@/components/Skills'))
-const Experience = lazy(() => import('@/components/Experience'))
-const Projects = lazy(() => import('@/components/Projects'))
-const LearningPlan = lazy(() => import('@/components/LearningPlan'))
-const Education = lazy(() => import('@/components/Education'))
-const Contact = lazy(() => import('@/components/Contact'))
-const Footer = lazy(() => import('@/components/Footer'))
+import CursorSpotlight from '@/components/layout/CursorSpotlight'
+import Footer from '@/components/layout/Footer'
+import MobileCta from '@/components/layout/MobileCta'
+import Navbar from '@/components/layout/Navbar'
+import ScrollProgress from '@/components/layout/ScrollProgress'
+import About from '@/components/sections/About'
+import Contact from '@/components/sections/Contact'
+import Education from '@/components/sections/Education'
+import Experience from '@/components/sections/Experience'
+import Hero from '@/components/sections/Hero'
+import Learning from '@/components/sections/Learning'
+import Projects from '@/components/sections/Projects'
+import Skills from '@/components/sections/Skills'
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen themed-bg" style={{ transition: 'background 0.4s' }}>
-      <div className="aurora" aria-hidden="true">
-        <div className="aurora-blob aurora-blob-1" />
-        <div className="aurora-blob aurora-blob-2" />
-        <div className="aurora-blob aurora-blob-3" />
-      </div>
-      <div className="grid-pattern fixed inset-0 z-0 pointer-events-none" aria-hidden="true" />
+    <>
+      <ScrollProgress />
+      <CursorSpotlight />
+      <Navbar />
 
-      <div className="relative z-10">
-        <Navbar />
+      <main id="main" className="relative z-10">
         <Hero />
-        <Suspense fallback={null}>
-          <About />
-          <AreaOfInterest />
-          <Skills />
-          <Experience />
-          <Projects />
-          <LearningPlan />
-          <Education />
-          <Contact />
-          <Footer />
-        </Suspense>
-      </div>
-    </div>
+        <About />
+        <Skills />
+        <Experience />
+        <Education />
+        <Projects />
+        <Learning />
+        <Contact />
+      </main>
+
+      <Footer />
+      <MobileCta />
+    </>
   )
 }

@@ -1,11 +1,10 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
+import { siteUrl } from '@/lib/data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://pinkimeena.dev'
-
   return [
     {
-      url: baseUrl,
+      url: siteUrl,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,

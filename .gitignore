@@ -33,3 +33,9 @@ next-env.d.ts
 *.njsproj
 *.sln
 *.sw?
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
+
+# Playwright MCP artifacts
+.playwright-mcp/
