@@ -3,8 +3,13 @@
  * Sections read from here so copy changes never require touching JSX.
  */
 
-/** Canonical origin. Override per-environment with NEXT_PUBLIC_SITE_URL. */
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://pinkimeena.dev'
+/**
+ * Canonical origin, used for canonical tags, Open Graph, sitemap and robots.
+ * Must point at a domain that actually resolves: if it does not, LinkedIn and
+ * Twitter fetch the preview image from a dead host and show no card at all.
+ * Override with NEXT_PUBLIC_SITE_URL when a custom domain is attached.
+ */
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://pinki-dev.vercel.app'
 
 export const profile = {
   name: 'Pinki Meena',

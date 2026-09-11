@@ -2,13 +2,21 @@
 
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Briefcase, Clock3, Globe, Mail } from 'lucide-react'
+import { ArrowUpRight, Briefcase, Clock3, Github, Globe, Linkedin, Mail } from 'lucide-react'
 import CountUp from '@/components/ui/CountUp'
 import { gmailCompose, heroStats, profile, trustedBy } from '@/lib/data'
 
 import { scrollToSection } from '@/lib/smooth-scroll'
 
 const scrollTo = scrollToSection
+
+/** Social links shown under the hero CTAs. */
+const socials = [
+  { label: 'GitHub', href: profile.github, icon: Github },
+  { label: 'LinkedIn', href: profile.linkedin, icon: Linkedin },
+  // Gmail compose with the address prefilled — same target the contact card uses.
+  { label: 'Email', href: gmailCompose, icon: Mail },
+] as const
 
 const container = {
   hidden: {},
@@ -89,6 +97,29 @@ export default function Hero() {
                 Résumé
               </a>
             </motion.div>
+
+              {/* Social links */}
+              <motion.ul variants={item} className="mt-7 flex items-center gap-3">
+                {socials.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={social.label}
+                      title={social.label}
+                      className="group/social grid h-11 w-11 place-items-center rounded-full border border-hairline bg-card text-ink-muted transition-all duration-300 ease-smooth hover:-translate-y-1 hover:border-primary/35 hover:text-primary hover:shadow-soft"
+                    >
+                      <social.icon
+                        size={18}
+                        className="transition-transform duration-300 ease-smooth group-hover/social:scale-110"
+                      />
+                    </a>
+                  </li>
+                ))}
+                <li aria-hidden className="ml-1 h-px w-10 bg-gradient-to-r from-hairline to-transparent" />
+                <li className="text-caption text-ink-faint">Find me online</li>
+              </motion.ul>
 
             {/* Floating glass stat cards */}
             <motion.ul variants={item} className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
