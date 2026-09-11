@@ -53,7 +53,7 @@ export default function CursorSpotlight() {
     <div
       ref={ref}
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-[5] hidden opacity-0 transition-opacity duration-500 md:block"
+      className="pointer-events-none fixed inset-0 z-[1] hidden opacity-0 transition-opacity duration-500 md:block"
       style={{
         background:
           'radial-gradient(340px circle at var(--x, 50%) var(--y, 50%), rgba(37,99,235,0.055), transparent 70%)',

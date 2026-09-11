@@ -32,7 +32,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Lenis drives scrolling; native smooth would fight it. */
     /* keep anchored sections clear of the sticky navbar */
     scroll-padding-top: calc(var(--nav-h) + 24px);
     -webkit-text-size-adjust: 100%;
@@ -164,11 +164,6 @@
     transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s ease, border-color 0.3s ease;
   }
 
-  .card-hover:hover {
-    transform: translateY(-4px);
-    border-color: #d3dced;
-    box-shadow: var(--tw-shadow-lift, 0 2px 4px rgba(17, 24, 39, 0.04), 0 24px 48px -20px rgba(37, 99, 235, 0.22));
-  }
 
   /* Soft glass panel used for floating hero cards */
   .glass {
@@ -262,15 +257,95 @@
   }
 
   /* Signature script under the portrait */
+  /* Handwritten accent — spec element 8. Caveat is loaded via next/font so it
+     renders identically on every platform. */
   .signature {
-    font-family: 'Snell Roundhand', 'Brush Script MT', 'Segoe Script', cursive;
-    font-style: italic;
+    font-family: var(--font-caveat), 'Caveat', cursive;
+    font-weight: 500;
     letter-spacing: 0.01em;
+  }
+
+  /* Dotted grid — spec element 2. */
+  .dot-grid {
+    background-image: radial-gradient(#cad3e6 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+
+  /* Soft floating shapes — spec element 4. Outline only, so they read as
+     background texture rather than foreground objects. */
+  .shape-ring {
+    border: 1.5px solid rgba(37, 99, 235, 0.22);
+    border-radius: 9999px;
+  }
+  .shape-square {
+    border: 1.5px solid rgba(37, 99, 235, 0.18);
+    border-radius: 10px;
+  }
+  .shape-diamond {
+    border: 1.5px solid rgba(176, 111, 216, 0.22);
+    border-radius: 6px;
+    transform: rotate(45deg);
+  }
+
+  /* Noise grain — spec element 10. Tiled SVG turbulence, rasterised once and
+     repeated, so it costs far less than a full-page filter. */
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
   }
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
+
+/* ==========================================================================
+   Lenis — required styles for the smooth scroller. Without these the page can
+   double-scroll or fight native smooth behaviour.
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Background motion — transform/opacity only, 8-14s, so it never competes
+   with content. Spec: "keep background floating elements at 8-12s duration".
+   ========================================================================== */
+@keyframes floatY {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -14px, 0); }
+}
+@keyframes floatXY {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33%      { transform: translate3d(10px, -12px, 0); }
+  66%      { transform: translate3d(-8px, 8px, 0); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(2.5deg); }
+}
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50%      { transform: translate3d(0, -18px, 0) rotate(6deg); }
+}
+
+.anim-float  { animation: floatY 9s ease-in-out infinite; }
+.anim-floatxy{ animation: floatXY 13s ease-in-out infinite; }
+.anim-sway   { animation: sway 11s ease-in-out infinite; transform-origin: bottom center; }
+.anim-drift  { animation: drift 12s ease-in-out infinite; }
 
 /* ==========================================================================
    Motion preferences

@@ -1,3 +1,4 @@
+import SectionDecor from '@/components/ui/SectionDecor'
 import { ArrowUpRight, Check } from 'lucide-react'
 import Reveal from '@/components/ui/Reveal'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -5,7 +6,8 @@ import { experience, profile } from '@/lib/data'
 
 export default function Experience() {
   return (
-    <section id="experience" className="scroll-mt-24 py-20 lg:py-[120px]">
+    <section id="experience" className="relative scroll-mt-24 overflow-hidden py-20 lg:py-[120px]">
+      <SectionDecor variant="experience" />
       <div className="shell">
         <SectionHeading
           eyebrow="Experience"
@@ -25,7 +27,7 @@ export default function Experience() {
 
         <ul className="space-y-5">
           {experience.map((job, i) => (
-            <Reveal as="li" key={`${job.company}-${job.role}`} delay={i * 0.08} className="card card-hover p-7 sm:p-card">
+            <Reveal as="li" key={`${job.company}-${job.role}`} delay={i * 0.08} className="card p-7 transition-all duration-300 ease-smooth hover:-translate-y-1.5 hover:border-primary/25 hover:shadow-lift sm:p-card">
               {/* Header */}
               <div className="flex flex-col gap-4 border-b border-hairline pb-6 md:flex-row md:items-start md:justify-between">
                 <div>

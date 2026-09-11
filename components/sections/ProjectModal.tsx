@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight, Github, X } from 'lucide-react'
 import type { Project } from '@/lib/data'
+import { pauseScroll, resumeScroll } from '@/lib/smooth-scroll'
 
 type ProjectModalProps = {
   project: Project | null
@@ -49,9 +50,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     if (!project) return
     const previouslyFocused = document.activeElement as HTMLElement | null
     document.body.style.overflow = 'hidden'
+    pauseScroll()
     panelRef.current?.focus()
     return () => {
       document.body.style.overflow = ''
+      resumeScroll()
       previouslyFocused?.focus?.()
     }
   }, [project])
@@ -142,7 +145,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
 
             {/* Case study body */}
-            <div className="max-h-[55vh] overflow-y-auto p-6 sm:p-card">
+            <div data-lenis-prevent className="max-h-[55vh] overflow-y-auto p-6 sm:p-card">
               <div className="flex flex-wrap items-center gap-2.5">
                 <span className="badge badge-primary">{project.category}</span>
                 <span className="badge">{project.year}</span>

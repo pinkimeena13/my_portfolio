@@ -1,3 +1,8 @@
+'use client'
+
+import { motion, useReducedMotion } from 'framer-motion'
+import CountUp from '@/components/ui/CountUp'
+import SectionDecor from '@/components/ui/SectionDecor'
 import { Check, Circle } from 'lucide-react'
 import Reveal from '@/components/ui/Reveal'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -9,8 +14,11 @@ const TONES = {
 } as const
 
 export default function Learning() {
+  const reduced = useReducedMotion()
+
   return (
-    <section id="learning" className="scroll-mt-24 py-20 lg:py-[120px]">
+    <section id="learning" className="relative scroll-mt-24 overflow-hidden py-20 lg:py-[120px]">
+      <SectionDecor variant="learning" />
       <div className="shell">
         <SectionHeading
           eyebrow="Always growing"
@@ -29,7 +37,7 @@ export default function Learning() {
             const done = path.topics.filter((t) => t.done).length
 
             return (
-              <Reveal as="li" key={path.title} delay={i * 0.08} className="card card-hover flex flex-col overflow-hidden">
+              <Reveal as="li" key={path.title} delay={i * 0.1} className="card group flex flex-col overflow-hidden transition-all duration-300 ease-smooth hover:-translate-y-1.5 hover:border-primary/25 hover:shadow-lift">
                 {/* Certificate-style header */}
                 <div className={`${tone.chip} px-7 pb-7 pt-8 sm:px-card`}>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/50">
@@ -39,13 +47,19 @@ export default function Learning() {
 
                   <div className="mt-6 flex items-center gap-4">
                     <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/70">
-                      <div
-                        className={`h-full rounded-full ${tone.bar}`}
-                        style={{ width: `${path.progress}%` }}
+                      <motion.div
+                        className={`h-full w-full origin-left rounded-full ${tone.bar}`}
+                        variants={{
+                          hidden: { scaleX: reduced ? path.progress / 100 : 0 },
+                          visible: {
+                            scaleX: path.progress / 100,
+                            transition: { duration: 1.1, delay: 0.25, ease: [0.22, 1, 0.36, 1] },
+                          },
+                        }}
                       />
                     </div>
                     <span className={`shrink-0 font-display text-sm font-bold ${tone.text}`}>
-                      {path.progress}%
+                      <CountUp value={`${path.progress}%`} />
                     </span>
                   </div>
                   <p className="mt-2.5 text-caption text-ink/50">

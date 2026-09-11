@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, Download } from 'lucide-react'
 import { profile } from '@/lib/data'
+import { scrollToSection } from '@/lib/smooth-scroll'
 
 /** Sticky bottom call-to-action — mobile only, appears once past the hero. */
 export default function MobileCta() {
@@ -31,7 +32,7 @@ export default function MobileCta() {
               href="#contact"
               onClick={(e) => {
                 e.preventDefault()
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+                scrollToSection('#contact')
               }}
               className="btn btn-primary flex-1"
             >

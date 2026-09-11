@@ -38,7 +38,7 @@ export default function MacbookFrame({
             fill
             sizes={sizes}
             priority={priority}
-            className="object-cover object-top transition-transform duration-700 ease-smooth group-hover:scale-[1.03]"
+            className="object-cover object-top transition-transform duration-700 ease-smooth group-hover:scale-105"
           />
         ) : (
           <div className="hero-gradient flex h-full w-full items-center justify-center">

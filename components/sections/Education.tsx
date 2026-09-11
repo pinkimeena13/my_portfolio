@@ -1,3 +1,4 @@
+import SectionDecor from '@/components/ui/SectionDecor'
 import { Check, GraduationCap } from 'lucide-react'
 import Reveal from '@/components/ui/Reveal'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -5,7 +6,8 @@ import { education } from '@/lib/data'
 
 export default function Education() {
   return (
-    <section id="education" className="scroll-mt-24 py-20 lg:py-[120px]">
+    <section id="education" className="relative scroll-mt-24 overflow-hidden py-20 lg:py-[120px]">
+      <SectionDecor variant="education" />
       <div className="shell">
         <SectionHeading
           eyebrow="Education"
@@ -20,10 +22,10 @@ export default function Education() {
 
         <ul className="grid gap-6 md:grid-cols-2">
           {education.map((item, i) => (
-            <Reveal as="li" key={item.short} delay={i * 0.08} className="card card-hover flex flex-col p-7 sm:p-card">
+            <Reveal as="li" key={item.short} delay={i * 0.08} className="card group flex flex-col p-7 transition-all duration-300 ease-smooth hover:-translate-y-1.5 hover:border-primary/25 hover:shadow-lift sm:p-card">
               <div className="flex items-start justify-between gap-4">
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[15px] border border-hairline bg-[#F5F7FB] text-primary">
-                  <GraduationCap size={20} />
+                  <GraduationCap size={20} className="transition-transform duration-300 ease-smooth group-hover:rotate-6" />
                 </span>
 
                 <span

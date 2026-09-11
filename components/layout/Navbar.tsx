@@ -1,9 +1,11 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { navLinks, profile } from '@/lib/data'
+import { scrollToSection } from '@/lib/smooth-scroll'
 
 const SECTION_IDS = navLinks.map((link) => link.href.slice(1))
 
@@ -69,7 +71,7 @@ export default function Navbar() {
 
   const go = useCallback((href: string) => {
     setOpen(false)
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+    scrollToSection(href)
   }, [])
 
   return (
@@ -86,10 +88,17 @@ export default function Navbar() {
         <a
           href="#home"
           onClick={(e) => { e.preventDefault(); go('#home') }}
-          className="flex shrink-0 items-center gap-2.5 font-display text-[15px] font-bold tracking-tight"
+          className="group/logo flex shrink-0 items-center gap-2.5 font-display text-[15px] font-bold tracking-tight"
         >
-          <span className="grid h-8 w-8 place-items-center rounded-[10px] bg-primary text-[13px] font-bold text-white">
-            PM
+          <span className="relative block h-10 w-11 shrink-0 transition-transform duration-300 ease-smooth group-hover/logo:scale-105">
+            <Image
+              src="/images/logo.png"
+              alt=""
+              fill
+              sizes="44px"
+              priority
+              className="object-contain"
+            />
           </span>
           <span className="hidden sm:inline">{profile.name}</span>
         </a>
@@ -105,7 +114,7 @@ export default function Navbar() {
                   onClick={(e) => { e.preventDefault(); go(link.href) }}
                   aria-current={isActive ? 'true' : undefined}
                   className={[
-                    'relative block rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200',
+                    'group/link relative block rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200',
                     isActive ? 'text-ink' : 'text-ink-subtle hover:text-ink',
                   ].join(' ')}
                 >
@@ -117,6 +126,10 @@ export default function Navbar() {
                     />
                   )}
                   {link.label}
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-4 bottom-1 h-[2px] origin-left scale-x-0 rounded-full bg-primary transition-transform duration-300 ease-smooth group-hover/link:scale-x-100"
+                  />
                 </a>
               </li>
             )

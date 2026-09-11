@@ -494,8 +494,8 @@ export const learning = [
   {
     title: 'System Design',
     pathway: 'Learning pathway',
-    progress: 100,
-    eta: 'Completed',
+    progress: 85,
+    eta: 'In progress',
     tone: 'sky',
     description:
       'Designing systems that stay correct and fast as they grow — the data model, the caching, and the trade-off behind each choice.',
@@ -505,7 +505,7 @@ export const learning = [
       { name: 'Database design & indexing', done: true },
       { name: 'Message queues & event-driven design', done: true },
       { name: 'Microservice patterns', done: true },
-      { name: 'High-availability architecture', done: true },
+      { name: 'High-availability architecture', done: false },
     ],
     tools: ['Redis', 'Kafka', 'Docker', 'AWS'],
   },

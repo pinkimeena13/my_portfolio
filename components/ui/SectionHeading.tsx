@@ -1,4 +1,7 @@
+'use client'
+
 import type { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 
 type SectionHeadingProps = {
@@ -34,6 +37,20 @@ export default function SectionHeading({
         <h2 className="mt-4 text-[2rem] font-bold leading-[1.12] tracking-tight sm:text-[2.5rem] lg:text-section-title">
           {title}
         </h2>
+        <motion.span
+          aria-hidden
+          variants={{
+            hidden: { scaleX: 0 },
+            visible: {
+              scaleX: 1,
+              transition: { duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] },
+            },
+          }}
+          className={[
+            'mt-6 block h-[3px] w-16 origin-left rounded-full bg-gradient-to-r from-primary to-[#b06fd8]',
+            centered ? 'mx-auto origin-center' : '',
+          ].join(' ')}
+        />
         {description && (
           <p className="mt-5 text-base leading-relaxed text-ink-muted sm:text-body">{description}</p>
         )}

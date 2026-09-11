@@ -9,22 +9,38 @@ type RevealProps = {
   delay?: number
   className?: string
   as?: 'div' | 'li' | 'section' | 'article'
+  /** Direction the element travels in from. */
+  from?: 'bottom' | 'left' | 'right'
 }
 
+const OFFSET = 26
+
 /**
- * Subtle fade-up on scroll. Respects prefers-reduced-motion by rendering
- * the content already in its final state.
+ * Scroll reveal following the motion spec: blur + fade rather than bounce,
+ * 0.4-0.8s, easeOut, and it plays once. Reduced motion gets the final state
+ * immediately.
  */
-export default function Reveal({ children, delay = 0, className, as = 'div' }: RevealProps) {
+export default function Reveal({
+  children,
+  delay = 0,
+  className,
+  as = 'div',
+  from = 'bottom',
+}: RevealProps) {
   const reduced = useReducedMotion()
   const MotionTag = motion[as]
 
+  const shift =
+    from === 'left' ? { x: -OFFSET } : from === 'right' ? { x: OFFSET } : { y: OFFSET }
+
   const variants: Variants = {
-    hidden: { opacity: 0, y: reduced ? 0 : 24 },
+    hidden: reduced ? { opacity: 0 } : { opacity: 0, filter: 'blur(6px)', ...shift },
     visible: {
       opacity: 1,
+      x: 0,
       y: 0,
-      transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      filter: 'blur(0px)',
+      transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
     },
   }
 

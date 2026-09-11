@@ -1,13 +1,22 @@
+'use client'
+
+import SectionDecor from '@/components/ui/SectionDecor'
 import Image from 'next/image'
+import { motion, useReducedMotion } from 'framer-motion'
 import Reveal from '@/components/ui/Reveal'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { aboutFacts, aboutParagraphs, aboutStatement, timeline } from '@/lib/data'
 
-const FRAME = 'relative overflow-hidden rounded-card border border-hairline bg-white'
+const FRAME =
+  'group relative overflow-hidden rounded-card border border-hairline bg-white'
+const ZOOM = 'transition-transform duration-700 ease-smooth group-hover:scale-[1.02]'
 
 export default function About() {
+  const reduced = useReducedMotion()
+
   return (
-    <section id="about" className="scroll-mt-24 py-20 lg:py-[120px]">
+    <section id="about" className="relative scroll-mt-24 overflow-hidden py-20 lg:py-[120px]">
+      <SectionDecor variant="about" />
       <div className="shell">
         <SectionHeading
           eyebrow="About me"
@@ -30,7 +39,7 @@ export default function About() {
                   alt="Pinki Meena working at her desk"
                   fill
                   sizes="(max-width: 1024px) 45vw, 22vw"
-                  className="object-cover"
+                  className={`object-cover ${ZOOM}`}
                 />
               </div>
               <div className={`${FRAME} aspect-[3/4]`}>
@@ -39,7 +48,7 @@ export default function About() {
                   alt="Pinki Meena at the office"
                   fill
                   sizes="(max-width: 1024px) 45vw, 22vw"
-                  className="object-cover object-top"
+                  className={`object-cover object-top ${ZOOM}`}
                 />
               </div>
             </div>
@@ -57,7 +66,7 @@ export default function About() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} className="flex flex-col justify-center">
+          <Reveal delay={0.1} from="left" className="flex flex-col justify-center">
             <p className="measure font-display text-xl font-semibold leading-snug tracking-tight sm:text-card-title">
               {aboutStatement}
             </p>
@@ -96,9 +105,13 @@ export default function About() {
           <div className="mt-12 grid gap-12 lg:grid-cols-[1.4fr_0.6fr] lg:gap-16">
             <ol className="relative">
               {/* Spine */}
-              <span
+              <motion.span
                 aria-hidden
-                className="absolute left-[7px] top-2 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-primary/40 via-hairline to-transparent sm:left-[calc(88px+7px)]"
+                initial={{ scaleY: reduced ? 1 : 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute left-[7px] top-2 h-[calc(100%-1rem)] w-px origin-top bg-gradient-to-b from-primary/40 via-hairline to-transparent sm:left-[calc(88px+7px)]"
               />
 
               {timeline.map((entry, i) => (
@@ -106,6 +119,7 @@ export default function About() {
                   as="li"
                   key={`${entry.year}-${entry.title}`}
                   delay={i * 0.06}
+                  from="left"
                   className="relative pb-10 last:pb-0"
                 >
                   <div className="flex flex-col gap-1 pl-9 sm:flex-row sm:gap-0 sm:pl-0">
@@ -115,12 +129,19 @@ export default function About() {
                     </span>
 
                     {/* Node */}
-                    <span
+                    <motion.span
                       aria-hidden
+                      variants={{
+                        hidden: { scale: reduced ? 1 : 0 },
+                        visible: {
+                          scale: 1,
+                          transition: { duration: 0.45, delay: 0.2, ease: [0.34, 1.4, 0.64, 1] },
+                        },
+                      }}
                       className="absolute left-0 top-1.5 grid h-[15px] w-[15px] place-items-center rounded-full border-2 border-primary bg-canvas sm:left-[88px]"
                     >
                       <span className="h-[5px] w-[5px] rounded-full bg-primary" />
-                    </span>
+                    </motion.span>
 
                     {/* Body */}
                     <div className="sm:pl-9">
@@ -144,7 +165,7 @@ export default function About() {
                     alt="Pinki Meena at her desk"
                     fill
                     sizes="28vw"
-                    className="object-cover"
+                    className={`object-cover ${ZOOM}`}
                   />
                 </div>
                 <figcaption className="mt-5 border-l-2 border-primary/25 pl-4 text-[15px] leading-relaxed text-ink-muted">

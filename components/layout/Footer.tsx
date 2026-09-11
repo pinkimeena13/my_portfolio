@@ -1,7 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import { ArrowUp, ArrowUpRight, FileText, Github, Linkedin, Mail, Phone, ShieldCheck } from 'lucide-react'
 import { footer, navLinks, profile } from '@/lib/data'
+import { scrollToSection, scrollToTop } from '@/lib/smooth-scroll'
 
 const SOCIALS = [
   { icon: Github, href: profile.github, label: 'GitHub' },
@@ -47,7 +49,7 @@ function ColumnHeading({ children }: { children: string }) {
 }
 
 export default function Footer() {
-  const toTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+  const toTop = () => scrollToTop()
 
   return (
     <footer className="relative overflow-hidden border-t border-hairline pb-28 pt-20 lg:pb-14 lg:pt-24">
@@ -56,13 +58,8 @@ export default function Footer() {
         {/* One very faint wash for depth — no blue block, no gradient sheet. */}
         <div className="wash-sky absolute -right-40 -top-40 h-[460px] w-[460px] rounded-full opacity-40" />
         {/* dot grid, top-left */}
-        <div
-          className="absolute left-6 top-8 h-24 w-36 opacity-20"
-          style={{
-            backgroundImage: 'radial-gradient(circle, #9ca3af 1.2px, transparent 1.2px)',
-            backgroundSize: '14px 14px',
-          }}
-        />
+        <div className="dot-grid absolute left-6 top-8 h-24 w-36 opacity-25" />
+        <div className="wash-lavender anim-float absolute -bottom-24 right-1/4 h-72 w-72 rounded-full opacity-60" />
       </div>
 
       {/* ── Vertical mantra, far left — only where the gutter can hold it ── */}
@@ -83,8 +80,8 @@ export default function Footer() {
           {/* ── Brand ── */}
           <div className="max-w-md">
             <div className="flex items-center gap-4">
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-[18px] bg-primary font-display text-lg font-bold text-white">
-                PM
+              <span className="relative block h-14 w-[62px] shrink-0">
+                <Image src="/images/logo.png" alt="" fill sizes="62px" className="object-contain" />
               </span>
               <div>
                 <p className="font-display text-2xl font-bold tracking-tight">{profile.name}</p>
@@ -104,7 +101,7 @@ export default function Footer() {
                     target={social.href.startsWith('http') ? '_blank' : undefined}
                     rel={social.href.startsWith('http') ? 'noreferrer' : undefined}
                     aria-label={social.label}
-                    className="grid h-11 w-11 place-items-center rounded-full border border-hairline bg-card text-ink-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:text-primary hover:shadow-soft"
+                    className="grid h-11 w-11 place-items-center rounded-full border border-hairline bg-card text-ink-muted transition-all duration-300 ease-smooth hover:-translate-y-1 hover:rotate-6 hover:scale-105 hover:border-primary/35 hover:text-primary hover:shadow-soft"
                   >
                     <social.icon size={17} />
                   </a>
@@ -127,6 +124,10 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      scrollToSection(link.href)
+                    }}
                     className="group inline-flex items-center gap-1.5 text-[15px] text-ink-muted transition-colors hover:text-primary"
                   >
                     {link.label}
@@ -206,7 +207,7 @@ export default function Footer() {
           >
             Back to top
             <span className="grid h-10 w-10 place-items-center rounded-full border border-hairline bg-card transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/35 group-hover:text-primary group-hover:shadow-soft">
-              <ArrowUp size={16} />
+              <ArrowUp size={16} className="transition-transform duration-300 ease-smooth group-hover:-translate-y-0.5" />
             </span>
           </button>
         </div>

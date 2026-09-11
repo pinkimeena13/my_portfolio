@@ -1,8 +1,10 @@
+import BackgroundDecor from '@/components/layout/BackgroundDecor'
 import CursorSpotlight from '@/components/layout/CursorSpotlight'
 import Footer from '@/components/layout/Footer'
 import MobileCta from '@/components/layout/MobileCta'
 import Navbar from '@/components/layout/Navbar'
 import ScrollProgress from '@/components/layout/ScrollProgress'
+import SmoothScroll from '@/components/layout/SmoothScroll'
 import About from '@/components/sections/About'
 import Contact from '@/components/sections/Contact'
 import Education from '@/components/sections/Education'
@@ -15,6 +17,8 @@ import Skills from '@/components/sections/Skills'
 export default function Home() {
   return (
     <>
+      <SmoothScroll />
+      <BackgroundDecor />
       <ScrollProgress />
       <CursorSpotlight />
       <Navbar />

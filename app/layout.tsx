@@ -1,11 +1,18 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Space_Grotesk } from 'next/font/google'
+import { Caveat, Inter, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import { profile, siteUrl } from '@/lib/data'
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
+})
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  variable: '--font-caveat',
+  weight: ['400', '500'],
   display: 'swap',
 })
 
@@ -87,9 +94,8 @@ const personSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${caveat.variable}`}>
       <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}

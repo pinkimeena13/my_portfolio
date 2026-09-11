@@ -3,9 +3,12 @@
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, Briefcase, Clock3, Globe, Mail } from 'lucide-react'
+import CountUp from '@/components/ui/CountUp'
 import { gmailCompose, heroStats, profile, trustedBy } from '@/lib/data'
 
-const scrollTo = (href: string) => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+import { scrollToSection } from '@/lib/smooth-scroll'
+
+const scrollTo = scrollToSection
 
 const container = {
   hidden: {},
@@ -22,18 +25,28 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative overflow-hidden pt-[112px] pb-20 lg:pt-[136px] lg:pb-28">
-      {/* Backdrop gradient from the design system */}
+      {/* Backdrop scrolls away with the hero. Pinning it to the viewport made
+          it trail down the whole page and left a hard seam where it ended. */}
       <div aria-hidden className="hero-gradient absolute inset-0 -z-10" />
       <div
         aria-hidden
         className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-canvas"
       />
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="dot-grid absolute left-2 top-28 hidden h-40 w-48 opacity-35 md:block" />
+        <span className="shape-diamond anim-float absolute left-[4%] bottom-[22%] hidden h-9 w-9 opacity-60 xl:block [animation-delay:-5s]" />
+      </div>
 
       <div className="shell">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           {/* ── Copy ── */}
           <motion.div variants={container} initial="hidden" animate="visible">
-            <motion.div variants={item}>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, scale: reduced ? 1 : 0.92 },
+                visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+              }}
+            >
               <span className="glass inline-flex items-center gap-2.5 rounded-full py-2 pl-3 pr-4 text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
@@ -81,7 +94,9 @@ export default function Hero() {
             <motion.ul variants={item} className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
               {heroStats.map((stat) => (
                 <li key={stat.label} className="glass rounded-card px-4 py-4">
-                  <p className="font-display text-2xl font-bold leading-none tracking-tight">{stat.value}</p>
+                  <p className="font-display text-2xl font-bold leading-none tracking-tight">
+                    <CountUp value={stat.value} />
+                  </p>
                   <p className="mt-2 text-xs leading-snug text-ink-subtle">{stat.label}</p>
                 </li>
               ))}
@@ -101,7 +116,10 @@ export default function Hero() {
               <div className="wash-lavender absolute inset-x-6 bottom-0 top-1/4 rounded-[55%_45%_40%_60%/45%_55%_50%_50%]" />
             </div>
 
-            <div className="relative overflow-hidden rounded-[28px] border border-white/80 bg-white shadow-glass">
+            <motion.div
+              whileHover={reduced ? undefined : { y: -4 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative overflow-hidden rounded-[28px] border border-white/80 bg-white shadow-glass transition-shadow duration-500 hover:shadow-[0_20px_40px_rgba(37,99,235,0.18)]">
               <Image
                 src="/images/portrait-beige.jpg"
                 alt={`${profile.name}, ${profile.role}`}
@@ -109,9 +127,9 @@ export default function Hero() {
                 height={1400}
                 priority
                 sizes="(max-width: 1024px) 90vw, (max-width: 1536px) 520px, 580px"
-                className="h-auto w-full object-cover"
+                className="h-auto w-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-[1.02]"
               />
-            </div>
+            </motion.div>
 
             {/* Signature under the photo */}
             <p className="signature mt-5 text-center text-2xl text-ink/45 lg:text-left">{profile.name}</p>

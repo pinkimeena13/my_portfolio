@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from 'react'
 import Image from 'next/image'
 import { ArrowUpRight, Check, Github, Linkedin, Mail, MapPin, Phone, Send } from 'lucide-react'
+import LeafMark from '@/components/ui/LeafMark'
 import Reveal from '@/components/ui/Reveal'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { profile } from '@/lib/data'
@@ -37,8 +38,13 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-24 py-20 lg:py-[120px]">
-      <div className="shell">
+    <section id="contact" className="relative scroll-mt-24 overflow-hidden py-20 lg:py-[120px]">
+      {/* Botanical accent — spec element 5 */}
+      <LeafMark
+        className="pointer-events-none absolute -bottom-10 right-0 hidden h-[420px] w-auto text-primary/[0.18] lg:block"
+      />
+
+      <div className="shell relative">
         <SectionHeading
           align="center"
           eyebrow="Contact"
@@ -186,9 +192,9 @@ export default function Contact() {
                 href={channel.href}
                 target={channel.href.startsWith('http') ? '_blank' : undefined}
                 rel={channel.href.startsWith('http') ? 'noreferrer' : undefined}
-                className="card card-hover group flex h-full flex-col p-7"
+                className="card group flex h-full flex-col p-7 transition-all duration-300 ease-smooth hover:-translate-y-1.5 hover:border-primary/25 hover:shadow-[0_20px_45px_-20px_rgba(37,99,235,0.35)]"
               >
-                <span className="grid h-11 w-11 place-items-center rounded-[14px] bg-primary/[0.08] text-primary">
+                <span className="grid h-11 w-11 place-items-center rounded-[14px] bg-primary/[0.08] text-primary transition-transform duration-300 ease-smooth group-hover:rotate-6 group-hover:scale-105">
                   <channel.icon size={18} />
                 </span>
                 <p className="mt-5 font-display text-base font-semibold">{channel.label}</p>

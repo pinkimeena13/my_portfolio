@@ -1,5 +1,6 @@
 'use client'
 
+import SectionDecor from '@/components/ui/SectionDecor'
 import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Images, Play } from 'lucide-react'
@@ -27,7 +28,8 @@ export default function Projects() {
   const visible = showAll ? ordered : ordered.slice(0, 6)
 
   return (
-    <section id="projects" className="scroll-mt-24 py-20 lg:py-[120px]">
+    <section id="projects" className="relative scroll-mt-24 overflow-hidden py-20 lg:py-[120px]">
+      <SectionDecor variant="projects" />
       <div className="shell">
         <SectionHeading
           eyebrow="Selected work"
@@ -74,7 +76,7 @@ export default function Projects() {
             const hasVideo = project.media.some((m) => m.type === 'video')
             return (
               <Reveal as="li" key={project.slug} delay={(i % 2) * 0.07}>
-                <article className="card card-hover group flex h-full flex-col overflow-hidden">
+                <article className="card group flex h-full flex-col overflow-hidden transition-all duration-400 ease-smooth hover:-translate-y-2 hover:border-primary/25 hover:shadow-[0_25px_60px_rgba(17,24,39,0.10)]">
                   {/* Screenshot in browser chrome */}
                   <div className="p-5 pb-0">
                     <MacbookFrame
@@ -121,7 +123,11 @@ export default function Projects() {
                         className="btn btn-primary h-11 flex-1 px-5 text-sm sm:flex-none"
                       >
                         Case study
-                        <ArrowUpRight size={16} strokeWidth={2.2} />
+                        <ArrowUpRight
+                          size={16}
+                          strokeWidth={2.2}
+                          className="transition-transform duration-300 ease-smooth group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        />
                       </button>
                       <span className="flex items-center gap-1.5 text-caption text-ink-faint">
                         <Images size={14} />
