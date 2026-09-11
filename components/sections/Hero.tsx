@@ -61,10 +61,10 @@ export default function Hero() {
               className="mt-7 max-w-[15ch] text-[2.75rem] font-bold leading-[1.06] tracking-[-0.03em] sm:text-[3.5rem] lg:max-w-[16ch] lg:text-hero 2xl:text-[5.25rem]"
             >
               {profile.headline.lead}{' '}
-              <span className="text-gradient inline-block -mr-2 pr-4 font-medium italic">
+              <span className="text-gradient inline-block pr-3 font-bold italic">
                 {profile.headline.accent}
               </span>
-              <span className="text-ink/25">—</span>
+              <span aria-hidden className="accent-rule" />
               <br />
               {profile.headline.rest}{' '}
               <span className="text-gradient font-medium italic">{profile.headline.emphasis}</span>

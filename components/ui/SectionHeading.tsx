@@ -47,7 +47,7 @@ export default function SectionHeading({
             },
           }}
           className={[
-            'mt-6 block h-[3px] w-16 origin-left rounded-full bg-gradient-to-r from-primary to-[#b06fd8]',
+            'mt-6 block h-[3px] w-16 origin-left rounded-full bg-gradient-to-r from-accent-start to-accent-end',
             centered ? 'mx-auto origin-center' : '',
           ].join(' ')}
         />

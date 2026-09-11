@@ -61,13 +61,13 @@ export default function Contact() {
           {/* Left — portrait card + details */}
           <Reveal className="card flex flex-col overflow-hidden">
             {/* 4:5 frame matches the portrait source, so nothing is cropped away. */}
-            <div className="relative aspect-[4/5] w-full bg-[#F5F7FB]">
+            <div className="relative aspect-[4/5] w-full bg-[#F5F7FB] lg:aspect-[4/3]">
               <Image
                 src="/images/portrait-progress.jpg"
                 alt={profile.name}
                 fill
                 sizes="(max-width: 1024px) 100vw, (max-width: 1440px) 40vw, 520px"
-                className="object-cover object-center"
+                className="object-cover object-center lg:object-[center_28%]"
               />
             </div>
 
@@ -101,13 +101,13 @@ export default function Contact() {
           </Reveal>
 
           {/* Right — form */}
-          <Reveal delay={0.08} className="card p-7 sm:p-card">
+          <Reveal delay={0.08} className="card flex flex-col p-7 sm:p-card">
             <h3 className="font-display text-card-title font-bold tracking-tight">Send a message</h3>
             <p className="mt-2 text-[15px] text-ink-muted">
               This opens your own mail app with the message ready to send.
             </p>
 
-            <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+            <form onSubmit={handleSubmit} className="mt-7 flex flex-1 flex-col gap-5">
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-faint">
@@ -151,12 +151,12 @@ export default function Contact() {
                   name="subject"
                   value={form.subject}
                   onChange={update('subject')}
-                  placeholder="Frontend role / project enquiry"
+                  placeholder="Full stack role / project enquiry"
                   className="field"
                 />
               </div>
 
-              <div>
+              <div className="flex flex-1 flex-col">
                 <label htmlFor="message" className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-faint">
                   Message
                 </label>
@@ -164,11 +164,10 @@ export default function Contact() {
                   id="message"
                   name="message"
                   required
-                  rows={5}
                   value={form.message}
                   onChange={update('message')}
                   placeholder="A little about the role or project, timeline, and what you need from me."
-                  className="field resize-none"
+                  className="field min-h-[160px] flex-1 resize-none lg:max-h-[280px]"
                 />
               </div>
 
@@ -177,7 +176,7 @@ export default function Contact() {
                 {sent ? 'Mail app opened' : 'Send message'}
               </button>
 
-              <p aria-live="polite" className="min-h-[20px] text-caption text-emerald-600">
+              <p aria-live="polite" className="text-caption text-emerald-600 empty:hidden">
                 {sent && 'Your mail app should be open — hit send and it reaches me directly.'}
               </p>
             </form>

@@ -22,6 +22,8 @@ next-env.d.ts
 *.mp4
 *.mov
 *.webm
+# ...except web-optimised demos small enough to ship with the repo
+!public/projects/**/demo.mp4
 
 # Editor directories and files
 .vscode/*

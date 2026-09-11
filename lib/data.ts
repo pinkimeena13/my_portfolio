@@ -81,7 +81,7 @@ export const aboutStatement =
   'I care about the craft behind the interface — structure that holds up, states that are handled, and performance you can feel. Most of my work sits where product intent meets engineering reality.'
 
 export const aboutParagraphs = [
-  'I started out building responsive interfaces with React and Angular, and quickly moved deeper into the stack — designing REST APIs, modelling data, and shipping features clients could actually rely on.',
+  'I have worked across the full stack from the start — responsive React and Angular interfaces on one side, and the REST APIs, data models and services behind them on the other.',
   'Since then I have migrated a production React Native app for an Australian client, built NestJS and MongoDB backends for an AgriTech platform, and automated enterprise approval workflows across SAP BTP and Microsoft Outlook.',
 ]
 
@@ -95,10 +95,10 @@ export const aboutFacts = [
 export const timeline = [
   {
     year: '2024',
-    title: 'Started Frontend Development',
+    title: 'Joined as a Full Stack Developer',
     org: 'Singaji Software Solution',
     detail:
-      'Joined as a Software Developer building production React and Angular interfaces, and moved into API integration and full-stack delivery.',
+      'Came in working across the whole stack from day one — React and Angular interfaces on one side, the REST APIs and data models behind them on the other.',
   },
   {
     year: '2025',
@@ -250,6 +250,40 @@ export const projects: readonly Project[] = [
       { type: 'image', src: '/projects/shouta/5.png' },
       { type: 'image', src: '/projects/shouta/6.png' },
       { type: 'image', src: '/projects/shouta/7.png' },
+    ],
+  },
+  {
+    slug: 'java-blog-api',
+    title: 'Java Blog Application',
+    subtitle: 'Spring Boot REST API',
+    year: '2026',
+    category: 'Backend',
+    featured: true,
+    cover: '/projects/blogApplication/1.png',
+    challenge:
+      'A blogging platform needs more than CRUD: stateless auth that scales, role-based access to every endpoint, and predictable error responses a frontend team can actually code against.',
+    role:
+      'Built the backend end to end on Spring Boot 3 and Java 17 in a four-tier layered architecture — JWT security with BCrypt hashing, CRUD for users, posts, categories and nested comments, JPA pagination and sorting, and a global exception interceptor for validation and constraint errors.',
+    result:
+      'A documented, stateless API with Swagger UI for contract testing and CORS configured for SPA clients, covered by JUnit 5, Mockito and MockMvc tests.',
+    stack: [
+      'Java 17',
+      'Spring Boot 3',
+      'Spring Security',
+      'Spring Data JPA',
+      'MySQL 8',
+      'Hibernate',
+      'JWT',
+      'Swagger / OpenAPI 3',
+      'Maven',
+      'JUnit 5',
+    ],
+    media: [
+      { type: 'video' as const, src: '/projects/blogApplication/demo.mp4' },
+      ...Array.from({ length: 4 }, (_, i) => ({
+        type: 'image' as const,
+        src: `/projects/blogApplication/${i + 1}.png`,
+      })),
     ],
   },
   {

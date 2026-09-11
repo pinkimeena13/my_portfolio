@@ -48,7 +48,7 @@ function ColumnHeading({ children }: { children: string }) {
   )
 }
 
-export default function Footer() {
+export default function Footer({ year }: { year: number }) {
   const toTop = () => scrollToTop()
 
   return (
@@ -81,7 +81,7 @@ export default function Footer() {
           <div className="max-w-md">
             <div className="flex items-center gap-4">
               <span className="relative block h-14 w-[62px] shrink-0">
-                <Image src="/images/logo.png" alt="" fill sizes="62px" className="object-contain" />
+                <Image src="/images/logo-mark.png" alt="" fill sizes="62px" className="object-contain" />
               </span>
               <div>
                 <p className="font-display text-2xl font-bold tracking-tight">{profile.name}</p>
@@ -185,7 +185,7 @@ export default function Footer() {
         {/* ── Bottom bar ── */}
         <div className="mt-14 flex flex-col gap-6 border-t border-hairline pt-7 lg:flex-row lg:items-center lg:justify-between">
           <p className="text-caption text-ink-faint">
-            © {new Date().getFullYear()} {profile.name}. All rights reserved.
+            © {year} {profile.name}. All rights reserved.
           </p>
 
           <ul className="flex flex-wrap items-center gap-x-3 gap-y-2 text-caption text-ink-subtle">

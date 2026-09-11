@@ -34,7 +34,8 @@ export default function Home() {
         <Contact />
       </main>
 
-      <Footer />
+      {/* Evaluated on the server so the client hydrates the same year. */}
+      <Footer year={new Date().getFullYear()} />
       <MobileCta />
     </>
   )

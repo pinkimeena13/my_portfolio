@@ -24,7 +24,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 const SITE_DESCRIPTION =
-  'Full Stack Developer with 2+ years of experience building secure, scalable web and mobile applications with React, React Native, Node.js and Angular.'
+  'Full Stack Developer building secure, scalable web and mobile applications with Java, Spring Boot, React, React Native and Node.js.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -36,12 +36,13 @@ export const metadata: Metadata = {
   keywords: [
     'Pinki Meena',
     'Full Stack Developer',
+    'Java Developer',
+    'Spring Boot Developer',
     'React Developer',
     'React Native Developer',
     'Node.js Developer',
     'Angular Developer',
-    'Next.js Developer',
-    'Frontend Developer India',
+    'Full Stack Developer India',
   ],
   authors: [{ name: profile.name, url: profile.github }],
   creator: profile.name,
@@ -80,6 +81,8 @@ const personSchema = {
   address: { '@type': 'PostalAddress', addressCountry: 'IN' },
   sameAs: [profile.github, profile.linkedin],
   knowsAbout: [
+    'Java',
+    'Spring Boot',
     'React',
     'React Native',
     'Next.js',
@@ -87,6 +90,7 @@ const personSchema = {
     'NestJS',
     'Angular',
     'TypeScript',
+    'MySQL',
     'MongoDB',
     'SAP BTP',
   ],
@@ -101,7 +105,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </head>
-      <body>{children}</body>
+      {/* Browser extensions (Grammarly, dark-mode tools) write attributes onto
+          <body> before hydration. This suppresses only <body>'s own attribute
+          diff — mismatches in the tree below still surface normally. */}
+      <body suppressHydrationWarning>{children}</body>
     </html>
   )
 }

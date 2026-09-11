@@ -6,15 +6,22 @@
    Design tokens — Premium Light
    ========================================================================== */
 :root {
+  /* Interactive blue. Kept deeper than the accent gradient start (#3B82F6)
+     because white-on-#3B82F6 is only 3.1:1 — below WCAG AA for button text. */
   --color-primary: #2563eb;
   --color-primary-hover: #1d4ed8;
+
+  /* Accent gradient — soft royal blue, used for display text only. */
+  --color-accent-start: #3b82f6;
+  --color-accent-end: #5b7cfa;
+
   --color-sky: #dceeff;
-  --color-lavender: #f9e8ff;
-  --color-canvas: #fffdf8;
+  --color-lavender: #dde5ff;
+  --color-canvas: #fcfbf8;
   --color-card: #ffffff;
-  --color-ink: #111827;
-  --color-ink-muted: #4b5563;
-  --color-border: #e2e8f0;
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  --color-border: #e5eaf4;
 
   --radius-card: 20px;
   --pad-card: 32px;
@@ -232,14 +239,35 @@
 @layer utilities {
   /* Hero backdrop gradient, straight from the design system */
   .hero-gradient {
-    background: linear-gradient(135deg, #fffdf8 0%, #f5f9ff 55%, #f9e8ff 100%);
+    background: linear-gradient(135deg, #fcfbf8 0%, #f2f6ff 55%, #dde5ff 100%);
   }
 
+  /* Display accent. The gradient is stated twice across 200% width so the
+     8s shift loops seamlessly; it only ever repaints a few words. */
   .text-gradient {
-    background: linear-gradient(120deg, #2563eb 0%, #7c5cf0 55%, #b06fd8 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-accent-start) 0%,
+      var(--color-accent-end) 25%,
+      var(--color-accent-start) 50%,
+      var(--color-accent-end) 75%,
+      var(--color-accent-start) 100%
+    );
+    background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: accentShift 8s ease-in-out infinite;
+  }
+
+  /* Gradient rule that replaces the flat grey dash in the hero. */
+  .accent-rule {
+    display: inline-block;
+    width: 56px;
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #a5b4fc, #dde5ff);
+    vertical-align: middle;
   }
 
   /* Soft wash for large decorative areas. Deliberately gradient-only: a
@@ -248,7 +276,7 @@
     background: radial-gradient(closest-side, rgba(220, 238, 255, 0.85), rgba(220, 238, 255, 0) 100%);
   }
   .wash-lavender {
-    background: radial-gradient(closest-side, rgba(249, 232, 255, 0.8), rgba(249, 232, 255, 0) 100%);
+    background: radial-gradient(closest-side, rgba(221, 229, 255, 0.85), rgba(221, 229, 255, 0) 100%);
   }
 
   .divider {
@@ -283,7 +311,7 @@
     border-radius: 10px;
   }
   .shape-diamond {
-    border: 1.5px solid rgba(176, 111, 216, 0.22);
+    border: 1.5px solid rgba(91, 124, 250, 0.24);
     border-radius: 6px;
     transform: rotate(45deg);
   }
@@ -324,6 +352,10 @@ html.lenis body {
    Background motion — transform/opacity only, 8-14s, so it never competes
    with content. Spec: "keep background floating elements at 8-12s duration".
    ========================================================================== */
+@keyframes accentShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
 @keyframes floatY {
   0%, 100% { transform: translate3d(0, 0, 0); }
   50%      { transform: translate3d(0, -14px, 0); }
@@ -352,6 +384,7 @@ html.lenis body {
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .text-gradient { animation: none !important; background-position: 0% 50% !important; }
   *,
   *::before,
   *::after {

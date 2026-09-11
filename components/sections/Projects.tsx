@@ -39,7 +39,7 @@ export default function Projects() {
               <span className="text-gradient font-medium italic">real problem.</span>
             </>
           }
-          description="Twelve shipped projects across web, mobile, backend and enterprise platforms. Open any one for the challenge, my role, and what changed."
+          description="Thirteen shipped projects across web, mobile, backend and enterprise platforms. Open any one for the challenge, my role, and what changed."
         />
 
         {/* Category filter */}

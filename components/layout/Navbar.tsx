@@ -88,19 +88,17 @@ export default function Navbar() {
         <a
           href="#home"
           onClick={(e) => { e.preventDefault(); go('#home') }}
-          className="group/logo flex shrink-0 items-center gap-2.5 font-display text-[15px] font-bold tracking-tight"
+          aria-label={`${profile.name} — back to top`}
+          className="group/logo relative block h-11 w-12 shrink-0 transition-transform duration-300 ease-smooth hover:scale-105"
         >
-          <span className="relative block h-10 w-11 shrink-0 transition-transform duration-300 ease-smooth group-hover/logo:scale-105">
-            <Image
-              src="/images/logo.png"
-              alt=""
-              fill
-              sizes="44px"
-              priority
-              className="object-contain"
-            />
-          </span>
-          <span className="hidden sm:inline">{profile.name}</span>
+          <Image
+            src="/images/logo-mark.png"
+            alt=""
+            fill
+            sizes="48px"
+            priority
+            className="object-contain"
+          />
         </a>
 
         {/* Desktop links */}

@@ -9,7 +9,7 @@ import SectionHeading from '@/components/ui/SectionHeading'
 import { learning } from '@/lib/data'
 
 const TONES = {
-  lavender: { chip: 'bg-[#F9E8FF]', bar: 'bg-[#b06fd8]', text: 'text-[#8b4fb8]' },
+  lavender: { chip: 'bg-[#EEF2FF]', bar: 'bg-accent-end', text: 'text-[#4A62D8]' },
   sky: { chip: 'bg-[#DCEEFF]', bar: 'bg-primary', text: 'text-primary' },
 } as const
 
