@@ -12,10 +12,18 @@ dist
 dist-ssr
 *.local
 
+# Next.js
+/.next/
+/out/
+next-env.d.ts
+.vercel
+
 # Large video files — hosted on GitHub Releases
 *.mp4
 *.mov
 *.webm
+# ...except web-optimised demos small enough to ship with the repo
+!public/projects/**/demo.mp4
 
 # Editor directories and files
 .vscode/*
@@ -27,3 +35,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
+
+# Playwright MCP artifacts
+.playwright-mcp/
