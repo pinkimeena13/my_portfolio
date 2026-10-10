@@ -54,13 +54,13 @@ export const metadata: Metadata = {
     title: `${profile.name} — ${profile.role}`,
     description: SITE_DESCRIPTION,
     siteName: `${profile.name} Portfolio`,
-    images: [{ url: '/images/portrait-smiling.jpg', width: 1400, height: 1400, alt: profile.name }],
+    images: [{ url: '/images/og-image.jpg', width: 1200, height: 1200, alt: profile.name }],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${profile.name} — ${profile.role}`,
     description: SITE_DESCRIPTION,
-    images: ['/images/portrait-smiling.jpg'],
+    images: ['/images/og-image.jpg'],
   },
 }
 
@@ -77,7 +77,7 @@ const personSchema = {
   jobTitle: profile.role,
   description: SITE_DESCRIPTION,
   email: profile.email,
-  image: '/images/portrait-smiling.jpg',
+  image: '/images/og-image.jpg',
   address: { '@type': 'PostalAddress', addressCountry: 'IN' },
   sameAs: [profile.github, profile.linkedin],
   knowsAbout: [

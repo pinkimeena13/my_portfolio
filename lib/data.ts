@@ -284,7 +284,7 @@ export const projects: readonly Project[] = [
       'JUnit 5',
     ],
     media: [
-      { type: 'video' as const, src: '/projects/blogApplication/demo.mp4' },
+      { type: 'video' as const, src: `${RELEASE}/blog-demo-video.mp4` },
       ...Array.from({ length: 4 }, (_, i) => ({
         type: 'image' as const,
         src: `/projects/blogApplication/${i + 1}.png`,
@@ -358,6 +358,26 @@ export const projects: readonly Project[] = [
       { type: 'image', src: '/projects/BCONNECT/CategoryPage.png' },
       { type: 'image', src: '/projects/BCONNECT/ProductDetailPage.png' },
       { type: 'image', src: '/projects/BCONNECT/BconnectBackendContendManager.png' },
+    ],
+  },
+  {
+    slug: 'ssism',
+    title: 'Sant Singaji Educational Society',
+    subtitle: 'Non-profit education platform · SSISM',
+    year: '2026',
+    category: 'Web',
+    featured: true,
+    cover: '/projects/SSISM/1.jpg',
+    challenge:
+      'A non-profit training rural youth in tech had academics, placements, institutional updates and its campus startup programme spread across disconnected tools — with many users on slow rural connections.',
+    role:
+      'Designed and built the full-stack platform: role-based access for admins, faculty, students and recruiters, a CMS for news, events and newsletters, a placement portal where students showcase verified skills and apply to visiting companies, and an online contribution flow for donors.',
+    result:
+      'One central hub for academics, placements, reporting and the Singaji Innovation & Tech Park — server-side rendered with Next.js for strong SEO and sub-second loads on low-bandwidth networks.',
+    stack: ['Next.js', 'React.js', 'SSR', 'Role-Based Access Control', 'CMS', 'Payment Gateway'],
+    media: [
+      { type: 'video', src: `${RELEASE}/ssism-video.mp4` },
+      ...Array.from({ length: 6 }, (_, i) => ({ type: 'image' as const, src: `/projects/SSISM/${i + 1}.jpg` })),
     ],
   },
   {

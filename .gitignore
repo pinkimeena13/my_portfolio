@@ -22,8 +22,6 @@ next-env.d.ts
 *.mp4
 *.mov
 *.webm
-# ...except web-optimised demos small enough to ship with the repo
-!public/projects/**/demo.mp4
 
 # Editor directories and files
 .vscode/*
@@ -41,3 +39,6 @@ tsconfig.tsbuildinfo
 
 # Playwright MCP artifacts
 .playwright-mcp/
+
+# Raw full-size captures kept locally; optimised copies ship instead
+public/projects/**/_originals/

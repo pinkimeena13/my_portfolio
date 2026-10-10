@@ -85,7 +85,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative my-auto w-full max-w-4xl overflow-hidden rounded-card border border-hairline bg-card shadow-glass outline-none"
+            className="relative my-auto flex max-h-[calc(100dvh-2rem)] w-full max-w-4xl sm:max-h-[calc(100dvh-3rem)] flex-col overflow-hidden rounded-card border border-hairline bg-card shadow-glass outline-none"
           >
             {/* Close */}
             <button
@@ -98,7 +98,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </button>
 
             {/* Gallery */}
-            <div className="relative aspect-[16/10] w-full bg-[#0e1116]">
+            <div className="relative aspect-[16/10] max-h-[50dvh] w-full shrink-0 bg-[#0e1116]">
               {current?.type === 'video' ? (
                 <video
                   key={current.src}
@@ -145,7 +145,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
 
             {/* Case study body */}
-            <div data-lenis-prevent className="max-h-[55vh] overflow-y-auto p-6 sm:p-card">
+            <div data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-6 sm:p-card">
               <div className="flex flex-wrap items-center gap-2.5">
                 <span className="badge badge-primary">{project.category}</span>
                 <span className="badge">{project.year}</span>
